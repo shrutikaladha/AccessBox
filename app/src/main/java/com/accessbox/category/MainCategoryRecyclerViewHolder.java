@@ -1,4 +1,4 @@
-package com.snapbox.category;
+package com.accessbox.category;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.snapbox.R;
-import com.snapbox.activity.SubCategoryActivity;
-import com.snapbox.util.ListUtils;
+import com.accessbox.R;
+import com.accessbox.activity.SubCategoryActivity;
+import com.accessbox.util.ListUtils;
 
 /**
  * Created by shrutika on 12/3/16.

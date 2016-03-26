@@ -1,4 +1,4 @@
-package com.snapbox.util;
+package com.accessbox.util;
 
 /**
  * Created by shrutika on 24/3/16.

@@ -1,4 +1,4 @@
-package com.snapbox.adapter;
+package com.accessbox.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,11 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.snapbox.R;
+import com.accessbox.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.snapbox.category.SubCategoryRecyclerViewHolder;
+import com.accessbox.category.SubCategoryRecyclerViewHolder;
 
 import java.util.ArrayList;
 

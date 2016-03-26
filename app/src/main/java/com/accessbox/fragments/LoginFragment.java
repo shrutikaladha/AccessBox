@@ -1,4 +1,4 @@
-package com.snapbox.fragments;
+package com.accessbox.fragments;
 
 import android.app.Fragment;
 

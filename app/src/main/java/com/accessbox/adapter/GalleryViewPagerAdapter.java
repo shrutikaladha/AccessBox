@@ -1,4 +1,4 @@
-package com.snapbox.adapter;
+package com.accessbox.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.snapbox.R;
+import com.accessbox.R;
 
 import java.util.ArrayList;
 

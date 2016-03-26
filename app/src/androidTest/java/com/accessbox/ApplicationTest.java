@@ -1,4 +1,4 @@
-package com.snapbox;
+package com.accessbox;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

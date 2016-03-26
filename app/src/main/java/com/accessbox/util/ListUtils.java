@@ -1,9 +1,9 @@
-package com.snapbox.util;
+package com.accessbox.util;
 
 import android.os.Environment;
 
-import com.snapbox.R;
-import com.snapbox.category.MainCategoryItem;
+import com.accessbox.R;
+import com.accessbox.category.MainCategoryItem;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class ListUtils {
     static ArrayList<String> itemList= new ArrayList<String>();
 
     public static String getCurrentPath(String category) {
-        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyChoice/"+category ;
+        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/AccessBox/"+category ;
         return filePath;
     }
 
@@ -49,7 +49,7 @@ public class ListUtils {
     }
 
     public static ArrayList<String> getSubCategoryItemList(String category) {
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyChoice/"+category ;
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/AccessBox/"+category ;
         File[] tShirtsFileList;
         File f = new File(path);
         if(!f.exists())
@@ -66,7 +66,7 @@ public class ListUtils {
 
 
     public static void setSubCategoryItemList(String category) {
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MyChoice/"+category ;
+        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/AccessBox/"+category ;
         File[] tShirtsFileList;
         File f = new File(path);
         if(!f.exists())

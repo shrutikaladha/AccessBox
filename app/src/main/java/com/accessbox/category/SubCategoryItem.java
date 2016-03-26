@@ -1,4 +1,4 @@
-package com.snapbox.category;
+package com.accessbox.category;
 
 /**
  * Created by shrutika on 11/3/16.

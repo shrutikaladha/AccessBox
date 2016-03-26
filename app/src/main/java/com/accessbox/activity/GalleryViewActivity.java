@@ -1,14 +1,14 @@
-package com.snapbox.activity;
+package com.accessbox.activity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
-import com.snapbox.R;
-import com.snapbox.adapter.GalleryViewPagerAdapter;
-import com.snapbox.util.AppConstants;
-import com.snapbox.util.ListUtils;
+import com.accessbox.R;
+import com.accessbox.adapter.GalleryViewPagerAdapter;
+import com.accessbox.util.AppConstants;
+import com.accessbox.util.ListUtils;
 
 /**
  * Created by shrutika on 13/3/16.

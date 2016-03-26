@@ -1,15 +1,15 @@
-package com.snapbox.activity;
+package com.accessbox.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.snapbox.R;
+import com.accessbox.R;
 
 /**
  * Created by shrutika on 24/3/16.
  */
-public class SnapboxBaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

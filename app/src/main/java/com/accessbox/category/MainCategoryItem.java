@@ -1,7 +1,4 @@
-package com.snapbox.category;
-
-import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
+package com.accessbox.category;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.snapbox.category;
+package com.accessbox.category;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.snapbox.R;
-import com.snapbox.activity.GalleryViewActivity;
+import com.accessbox.R;
+import com.accessbox.activity.GalleryViewActivity;
 
 /**
  * Created by shrutika on 24/3/16.

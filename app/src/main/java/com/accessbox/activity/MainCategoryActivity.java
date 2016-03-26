@@ -1,4 +1,4 @@
-package com.snapbox.activity;
+package com.accessbox.activity;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -9,15 +9,15 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.snapbox.R;
-import com.snapbox.adapter.MainCategoryItemAdapter;
-import com.snapbox.category.MainCategoryItem;
-import com.snapbox.dialog.CategoryDialogFragment;
-import com.snapbox.util.ListUtils;
+import com.accessbox.R;
+import com.accessbox.adapter.MainCategoryItemAdapter;
+import com.accessbox.category.MainCategoryItem;
+import com.accessbox.dialog.CategoryDialogFragment;
+import com.accessbox.util.ListUtils;
 
 import java.util.ArrayList;
 
-public class MainCategoryActivity extends SnapboxBaseActivity {
+public class MainCategoryActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

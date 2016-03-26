@@ -1,4 +1,4 @@
-package com.snapbox.activity;
+package com.accessbox.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,10 +12,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
-import com.snapbox.R;
-import com.snapbox.adapter.SubCategoryItemAdapter;
-import com.snapbox.category.MainCategoryItem;
-import com.snapbox.util.ListUtils;
+import com.accessbox.R;
+import com.accessbox.adapter.SubCategoryItemAdapter;
+import com.accessbox.category.MainCategoryItem;
+import com.accessbox.util.ListUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by shrutika on 24/3/16.
  */
-public class SubCategoryActivity extends SnapboxBaseActivity {
+public class SubCategoryActivity extends BaseActivity {
     SubCategoryItemAdapter subCategoryItemAdapter;
     MainCategoryItem mainCategoryItem;
     private final int UPLOAD = 1;

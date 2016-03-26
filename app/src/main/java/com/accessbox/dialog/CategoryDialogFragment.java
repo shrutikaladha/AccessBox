@@ -1,4 +1,4 @@
-package com.snapbox.dialog;
+package com.accessbox.dialog;
 
 
 import android.app.DialogFragment;
@@ -12,9 +12,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.snapbox.R;
-import com.snapbox.category.MainCategoryItem;
-import com.snapbox.util.ListUtils;
+import com.accessbox.R;
+import com.accessbox.category.MainCategoryItem;
+import com.accessbox.util.ListUtils;
 
 /**
  * Created by shrutika on 13/3/16.

@@ -1,4 +1,4 @@
-package com.snapbox.activity;
+package com.accessbox.activity;
 
 /**
  * Created by shrutika on 12/3/16.
@@ -27,7 +27,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.snapbox.R;
+import com.accessbox.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -46,7 +46,7 @@ import java.util.Date;
  * Created by Shrutika on 12/26/2015.
  */
 public class SelectPhotosActivity extends AppCompatActivity {
-    private final String DIRECTORY = "MyChoice";
+    private final String DIRECTORY = "AccessBox";
     private final String IMAGE_PATH = "path";
     private final String ExternalStorageDirectoryPath = Environment.getExternalStorageDirectory().getAbsolutePath();
     private final int CAPTURE_IMAGE = 1;
