@@ -8,7 +8,7 @@ import com.accessbox.R;
 
 import android.os.Handler;
 
-public class ActivitySplash extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class ActivitySplash extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(ActivitySplash.this, MainCategoryActivity.class);
+                Intent intent = new Intent(SplashActivity.this, HomePageActivity.class);
                 startActivity(intent);
                 finish();
             }

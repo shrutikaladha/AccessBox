@@ -31,7 +31,7 @@ public class SubCategoryActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sub_category_activity_layout);
+        setContentView(R.layout.activity_sub_category_layout);
         mainCategoryItem = (MainCategoryItem) getIntent().getSerializableExtra("Category");
         setCoverPhoto();
         setupFab();

@@ -66,7 +66,7 @@ public class SelectPhotosActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_images_layout);
+        setContentView(R.layout.activity_select_photos_layout);
         Button selectBtn = (Button) findViewById(R.id.selectBtn);
         Button captureBtn = (Button) findViewById(R.id.captureBtn);
         gridView = (GridView) findViewById(R.id.gridView);

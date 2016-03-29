@@ -24,7 +24,6 @@ public class SubCategoryItemAdapter extends RecyclerView.Adapter<SubCategoryRecy
     Context mContext;
     public ImageLoader imageLoader = ImageLoader.getInstance();
     private DisplayImageOptions options;
-    private String viewType;
     public String categoryName;
 
     public SubCategoryItemAdapter(Context context, ArrayList<String> imageList, String categoryName) {
@@ -32,7 +31,6 @@ public class SubCategoryItemAdapter extends RecyclerView.Adapter<SubCategoryRecy
         mInflater = LayoutInflater.from(mContext);
         itemList = new ArrayList<String>();
         this.itemList = imageList;
-        this.viewType = viewType;
         this.categoryName=categoryName;
         options = new DisplayImageOptions.Builder().cacheInMemory().cacheOnDisc().build();
         imageLoader.init(ImageLoaderConfiguration.createDefault(mContext));

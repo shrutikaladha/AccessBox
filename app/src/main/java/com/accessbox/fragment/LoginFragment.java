@@ -1,4 +1,4 @@
-package com.accessbox.fragments;
+package com.accessbox.fragment;
 
 import android.app.Fragment;
 

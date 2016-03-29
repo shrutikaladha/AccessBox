@@ -29,7 +29,7 @@ public class ListUtils {
         mainCategoryItems.add(mainCategoryItem);
     }
 
-    public static void setMainCategoryItems(String gender) {
+    public static void setProfileCategory(String gender) {
         switch (gender) {
             case "female":
                 mainCategoryItems.add(new MainCategoryItem("Watches", "watch", R.drawable.watches));

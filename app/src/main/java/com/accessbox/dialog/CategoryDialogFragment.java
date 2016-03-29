@@ -34,7 +34,7 @@ public class CategoryDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.add_category_dialog_layout, container);
+        return inflater.inflate(R.layout.dialog_add_category_layout, container);
     }
 
     @Override

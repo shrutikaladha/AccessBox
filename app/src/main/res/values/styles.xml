@@ -17,11 +17,20 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="SnapboxHeadingTextView">
+    <style name="HeadingStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">22dp</item>
         <item name="android:textColor">@color/main_category_text_color</item>
         </style>
+
+    <style name="PagerTitleStrip">
+        <item name="android:textAppearance">@style/PagerTitleStripTextAppearance</item>
+    </style>
+    <style name="PagerTitleStripTextAppearance">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_content_text_size</item>
+    </style>
 
 </resources>
