@@ -105,7 +105,6 @@ public class HomePageActivity extends BaseActivity {
     }
 
 
-
     private void setUpFab() {
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

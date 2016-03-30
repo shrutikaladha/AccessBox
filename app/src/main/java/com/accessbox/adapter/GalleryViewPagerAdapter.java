@@ -9,11 +9,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.accessbox.R;
+import com.accessbox.category.SubCategoryItem;
 
 import java.util.ArrayList;
 
@@ -22,18 +22,18 @@ import java.util.ArrayList;
  */
 public class GalleryViewPagerAdapter extends PagerAdapter {
     private Activity activity;
-    private ArrayList<String> imagePath;
+    private ArrayList<SubCategoryItem> subCategoryItemArrayList;
     private LayoutInflater inflater;
 
     // constructor
-    public GalleryViewPagerAdapter(Activity activity, ArrayList<String> imagePaths) {
+    public GalleryViewPagerAdapter(Activity activity, ArrayList<SubCategoryItem> subCategoryItemArrayList) {
         this.activity = activity;
-        this.imagePath = imagePaths;
+        this.subCategoryItemArrayList = subCategoryItemArrayList;
     }
 
     @Override
     public int getCount() {
-        return imagePath.size();
+        return subCategoryItemArrayList.size();
     }
 
     @Override
@@ -44,8 +44,6 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         ImageView imgDisplay;
-        Button btnClose;
-
         inflater = (LayoutInflater) activity
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View viewLayout = inflater.inflate(R.layout.gallery_view_pager_layout, container,
@@ -55,7 +53,7 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-        Bitmap bitmap = BitmapFactory.decodeFile(imagePath.get(position), options);
+        Bitmap bitmap = BitmapFactory.decodeFile(subCategoryItemArrayList.get(position).getImgPath(), options);
         imgDisplay.setImageBitmap(bitmap);
 
         ((ViewPager) container).addView(viewLayout);

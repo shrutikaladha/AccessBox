@@ -10,43 +10,43 @@ public class SubCategoryItem {
     private String imgPath;
     private String shortNote;
 
-    private void setCatId(String catId) {
+    public void setCatId(String catId) {
         this.catId = catId;
     }
 
-    private void setItemId(String itemId) {
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 
-    private void setBrandName(String brandName) {
+    public void setBrandName(String brandName) {
         this.brandName = brandName;
     }
 
-    private void setImgPath(String imgPath) {
+    public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
     }
 
-    private void setShortNote(String shortNote) {
+    public void setShortNote(String shortNote) {
         this.shortNote = shortNote;
     }
 
-    private String getCatId() {
+    public String getCatId() {
         return catId;
     }
 
-    private String getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
-    private String getImgPath() {
+    public String getImgPath() {
         return imgPath;
     }
 
-    private String getShortNote() {
+    public String getShortNote() {
         return shortNote;
     }
 
-    private String getBrandName() {
+    public String getBrandName() {
         return brandName;
     }
 }

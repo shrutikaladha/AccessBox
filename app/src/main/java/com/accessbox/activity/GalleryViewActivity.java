@@ -13,7 +13,7 @@ import com.accessbox.util.ListUtils;
 /**
  * Created by shrutika on 13/3/16.
  */
-public class GalleryViewActivity extends Activity{
+public class GalleryViewActivity extends Activity {
 
     private GalleryViewPagerAdapter adapter;
     private ViewPager viewPager;

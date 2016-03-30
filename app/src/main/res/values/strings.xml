@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">AccessBox</string>
     <string name="action_settings">Settings</string>
+    <string name="action_favorites">Add to Favorites</string>
+    <string name="action_shortlist">Add to Shortlist</string>
+    <string name="action_share">Share</string>
+    <string name="action_delete">Delete</string>
 </resources>

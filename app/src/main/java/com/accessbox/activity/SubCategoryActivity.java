@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.accessbox.R;
 import com.accessbox.adapter.SubCategoryItemAdapter;
 import com.accessbox.category.MainCategoryItem;
+import com.accessbox.category.SubCategoryItem;
 import com.accessbox.util.ListUtils;
 
 import java.io.File;
@@ -35,9 +36,9 @@ public class SubCategoryActivity extends BaseActivity {
         mainCategoryItem = (MainCategoryItem) getIntent().getSerializableExtra("Category");
         setCoverPhoto();
         setupFab();
-        ArrayList<String> commonItemArrayList = new ArrayList<String>();
-        commonItemArrayList = ListUtils.getSubCategoryItemList(mainCategoryItem.getCategoryName());
-        subCategoryItemAdapter = new SubCategoryItemAdapter(this, commonItemArrayList,mainCategoryItem.getCategoryName());
+        ArrayList<SubCategoryItem> subCategoryItemList = new ArrayList<SubCategoryItem>();
+        subCategoryItemList = ListUtils.getSubCategoryItemList(mainCategoryItem.getCategoryName());
+        subCategoryItemAdapter = new SubCategoryItemAdapter(this, subCategoryItemList);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -72,7 +73,8 @@ public class SubCategoryActivity extends BaseActivity {
                     public void onScanCompleted(String path, Uri uri) {
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                ListUtils.setSubCategoryItemList(mainCategoryItem.getCategoryName());
+                                ListUtils.getSubCategoryItemList(mainCategoryItem.getCategoryName());
+                                //ListUtils.setSubCategoryItemList(mainCategoryItem.getCategoryName());
                             }
                         });
                     }
