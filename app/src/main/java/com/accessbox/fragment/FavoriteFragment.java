@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.accessbox.R;
 import com.accessbox.adapter.SubCategoryItemAdapter;
 import com.accessbox.category.SubCategoryItem;
+import com.accessbox.util.ListUtils;
 import com.accessbox.util.Utils;
 
 import java.util.ArrayList;
@@ -41,7 +42,8 @@ public class FavoriteFragment extends Fragment {
     }
 
     private void setUpList() {
-        ArrayList<SubCategoryItem> favoriteItemList = Utils.getFavoriteItemsList();
+        ArrayList<SubCategoryItem> favoriteItemList = new ArrayList<SubCategoryItem>();
+        favoriteItemList = ListUtils.getFavoriteItemsList(mContext);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(gridLayoutManager);

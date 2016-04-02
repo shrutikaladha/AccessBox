@@ -1,5 +1,6 @@
 package com.accessbox.util;
 
+import android.content.Context;
 import android.os.Environment;
 
 import com.accessbox.R;
@@ -15,11 +16,12 @@ import java.util.ArrayList;
 public class ListUtils {
 
     static ArrayList<MainCategoryItem> mainCategoryItemsList = new ArrayList<MainCategoryItem>();
-    static ArrayList<SubCategoryItem> subCategoryItemsList = new ArrayList<SubCategoryItem>();
-    static ArrayList<SubCategoryItem> favoriteItemsList =  new ArrayList<SubCategoryItem>();
-    static ArrayList<SubCategoryItem>  shortlistItemsList = new ArrayList<SubCategoryItem>();
+    private static ArrayList<SubCategoryItem> favoriteItemsList =  new ArrayList<SubCategoryItem>();
+    private static ArrayList<SubCategoryItem> shortlistItemsList =  new ArrayList<SubCategoryItem>();
+    static SharedPrefs sharedPrefs = new SharedPrefs();
 
-    public static String getCurrentPath(String category) {
+
+    public static String getCurrentCategoryFolderPath(String category) {
         String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/AccessBox/"+category ;
         return filePath;
     }
@@ -52,7 +54,8 @@ public class ListUtils {
     }
 
     public static ArrayList<SubCategoryItem> getSubCategoryItemList(String category) {
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/AccessBox/"+category ;
+        ArrayList<SubCategoryItem> subCategoryItemsList = new ArrayList<SubCategoryItem>();
+        String path = getCurrentCategoryFolderPath(category) ;
         File[] subCategoryList;
         File f = new File(path);
         if(!f.exists())
@@ -69,22 +72,35 @@ public class ListUtils {
         return subCategoryItemsList;
     }
 
-
-    public static void setSubCategoryItemList(String category) {
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/AccessBox/"+category ;
-        File[] subCategoryList;
-        File f = new File(path);
-        if(!f.exists())
-            f.mkdir();
-        subCategoryList = f.listFiles();
-        if(subCategoryList != null) {
-            for (int i = 0; i < subCategoryList.length; i++) {
-                SubCategoryItem subCategoryItem = new SubCategoryItem();
-                subCategoryItem.setImgPath(subCategoryList[i].getPath());
-                subCategoryItem.setCatId(category);
-                subCategoryItemsList.add(subCategoryItem);
-            }
-        }
+    public static void addToFavorites(Context context, SubCategoryItem subCategoryItem) {
+        favoriteItemsList.add(subCategoryItem);
+        sharedPrefs.addToFavorite(context, subCategoryItem);
     }
+
+    public static void removeFromFavorites(Context context, SubCategoryItem subCategoryItem) {
+        favoriteItemsList.remove(subCategoryItem);
+        sharedPrefs.removeFromFavorite(context, subCategoryItem);
+    }
+
+    public static ArrayList<SubCategoryItem> getFavoriteItemsList(Context context) {
+        favoriteItemsList = sharedPrefs.getFavoriteList(context);
+        return favoriteItemsList;
+    }
+
+    public static void addToShortlist(Context context,SubCategoryItem subCategoryItem) {
+        shortlistItemsList.add(subCategoryItem);
+        sharedPrefs.addToShortlist(context, subCategoryItem);
+    }
+
+    public static void removeFromShortlist(Context context,SubCategoryItem subCategoryItem) {
+        shortlistItemsList.remove(subCategoryItem);
+        sharedPrefs.removeFromShortlist(context, subCategoryItem);
+    }
+
+    public static ArrayList<SubCategoryItem> getShortlistItemsList(Context context) {
+        shortlistItemsList = sharedPrefs.getShortlistedItemsList(context);
+        return shortlistItemsList;
+    }
+
 
 }

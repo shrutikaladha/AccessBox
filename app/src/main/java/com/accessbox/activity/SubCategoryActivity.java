@@ -9,6 +9,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -38,11 +39,11 @@ public class SubCategoryActivity extends BaseActivity {
         setupFab();
         ArrayList<SubCategoryItem> subCategoryItemList = new ArrayList<SubCategoryItem>();
         subCategoryItemList = ListUtils.getSubCategoryItemList(mainCategoryItem.getCategoryName());
-        subCategoryItemAdapter = new SubCategoryItemAdapter(this, subCategoryItemList);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(gridLayoutManager);
+        subCategoryItemAdapter = new SubCategoryItemAdapter(this, subCategoryItemList);
         recyclerView.setAdapter(subCategoryItemAdapter);
     }
 
@@ -74,7 +75,6 @@ public class SubCategoryActivity extends BaseActivity {
                         runOnUiThread(new Runnable() {
                             public void run() {
                                 ListUtils.getSubCategoryItemList(mainCategoryItem.getCategoryName());
-                                //ListUtils.setSubCategoryItemList(mainCategoryItem.getCategoryName());
                             }
                         });
                     }
@@ -85,7 +85,7 @@ public class SubCategoryActivity extends BaseActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == UPLOAD) {
             if (resultCode == Activity.RESULT_OK) {
-                scanFile(ListUtils.getCurrentPath(mainCategoryItem.getCategoryName()));
+                scanFile(ListUtils.getCurrentCategoryFolderPath(mainCategoryItem.getCategoryName()));
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(this, "Problem uploading images.", Toast.LENGTH_SHORT).show();

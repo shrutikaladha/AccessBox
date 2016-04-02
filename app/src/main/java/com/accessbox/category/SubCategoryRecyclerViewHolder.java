@@ -12,8 +12,8 @@ import android.widget.Toast;
 
 import com.accessbox.R;
 import com.accessbox.activity.GalleryViewActivity;
+import com.accessbox.util.AppConstants;
 import com.accessbox.util.ListUtils;
-import com.accessbox.util.Utils;
 
 import java.util.ArrayList;
 
@@ -21,21 +21,19 @@ import java.util.ArrayList;
  * Created by shrutika on 24/3/16.
  */
 public class SubCategoryRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public ImageView ivCategory;
+    public ImageView mIvCategory;
     private Context mContext;
-    private String categoryName;
-    private ImageView ivMoreOptions;
-    private ArrayList<SubCategoryItem> subCategoryItemsList;
+    private ImageView mIvMoreOptions;
+    private ArrayList<SubCategoryItem> mSubCategoryItemsList;
 
-    public SubCategoryRecyclerViewHolder(View itemView, Context context, String categoryName) {
+    public SubCategoryRecyclerViewHolder(View itemView, Context context, ArrayList<SubCategoryItem> subCategoryItemsList) {
         super(itemView);
         itemView.setOnClickListener(this);
-        ivCategory = (ImageView) itemView.findViewById(R.id.ivCategory);
-        ivMoreOptions = (ImageView) itemView.findViewById(R.id.iv_more_options);
-        ivMoreOptions.setOnClickListener(this);
+        mIvCategory = (ImageView) itemView.findViewById(R.id.iv_Category);
+        mIvMoreOptions = (ImageView) itemView.findViewById(R.id.iv_more_options);
+        mIvMoreOptions.setOnClickListener(this);
         mContext = context;
-        this.categoryName = categoryName;
-        subCategoryItemsList = ListUtils.getSubCategoryItemList(categoryName);
+        mSubCategoryItemsList = subCategoryItemsList;
     }
 
     @Override
@@ -43,7 +41,7 @@ public class SubCategoryRecyclerViewHolder extends RecyclerView.ViewHolder imple
         switch (view.getId()) {
             case R.id.iv_more_options:
                 //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(mContext, ivMoreOptions);
+                PopupMenu popup = new PopupMenu(mContext, mIvMoreOptions);
                 //Inflating the Popup using xml file
                 popup.getMenuInflater().inflate(R.menu.menu_sub_category_item, popup.getMenu());
 
@@ -52,10 +50,10 @@ public class SubCategoryRecyclerViewHolder extends RecyclerView.ViewHolder imple
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_favorite:
-                                Utils.addToFavorites(subCategoryItemsList.get(getAdapterPosition()));
+                                ListUtils.addToFavorites(mContext, mSubCategoryItemsList.get(getAdapterPosition()));
                                 break;
                             case R.id.action_shortlist:
-                                Utils.addToShortlist(subCategoryItemsList.get(getAdapterPosition()));
+                                ListUtils.addToShortlist(mContext, mSubCategoryItemsList.get(getAdapterPosition()));
                                 break;
                             case R.id.action_share:
                                 shareIt();
@@ -74,8 +72,8 @@ public class SubCategoryRecyclerViewHolder extends RecyclerView.ViewHolder imple
                 break;
             case R.id.card_view:
                 Intent intent = new Intent(mContext, GalleryViewActivity.class);
-                intent.putExtra("position", getAdapterPosition());
-                intent.putExtra("category", categoryName);
+                intent.putExtra(AppConstants.position, getAdapterPosition());
+                intent.putExtra(AppConstants.itemList, mSubCategoryItemsList);
                 mContext.startActivity(intent);
                 break;
 
@@ -85,7 +83,7 @@ public class SubCategoryRecyclerViewHolder extends RecyclerView.ViewHolder imple
 
     private void shareIt() {
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-        Uri screenshotUri = Uri.parse(String.valueOf(subCategoryItemsList.get(getAdapterPosition())));
+        Uri screenshotUri = Uri.parse(String.valueOf(mSubCategoryItemsList.get(getAdapterPosition())));
         sharingIntent.setType("image/jpeg");
         sharingIntent.putExtra(Intent.EXTRA_STREAM, screenshotUri);
         mContext.startActivity(Intent.createChooser(sharingIntent, "Share image using"));

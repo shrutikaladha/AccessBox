@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.accessbox.R;
 import com.accessbox.adapter.SubCategoryItemAdapter;
 import com.accessbox.category.SubCategoryItem;
+import com.accessbox.util.ListUtils;
 import com.accessbox.util.Utils;
 
 import java.util.ArrayList;
@@ -40,7 +41,8 @@ public class ShortlistFragment extends Fragment {
     }
 
     private void setUpList() {
-        ArrayList<SubCategoryItem> shortlistItemList = Utils.getShortlistItemsList();
+        ArrayList<SubCategoryItem> shortlistItemList = new ArrayList<SubCategoryItem>();
+        shortlistItemList = ListUtils.getShortlistItemsList(mContext);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(gridLayoutManager);

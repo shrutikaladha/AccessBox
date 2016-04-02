@@ -22,18 +22,18 @@ import java.util.ArrayList;
  */
 public class GalleryViewPagerAdapter extends PagerAdapter {
     private Activity activity;
-    private ArrayList<SubCategoryItem> subCategoryItemArrayList;
+    private ArrayList<SubCategoryItem> subCategoryItemList;
     private LayoutInflater inflater;
 
     // constructor
-    public GalleryViewPagerAdapter(Activity activity, ArrayList<SubCategoryItem> subCategoryItemArrayList) {
+    public GalleryViewPagerAdapter(Activity activity, ArrayList<SubCategoryItem> subCategoryItemList) {
         this.activity = activity;
-        this.subCategoryItemArrayList = subCategoryItemArrayList;
+        this.subCategoryItemList = subCategoryItemList;
     }
 
     @Override
     public int getCount() {
-        return subCategoryItemArrayList.size();
+        return subCategoryItemList.size();
     }
 
     @Override
@@ -53,7 +53,7 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-        Bitmap bitmap = BitmapFactory.decodeFile(subCategoryItemArrayList.get(position).getImgPath(), options);
+        Bitmap bitmap = BitmapFactory.decodeFile(subCategoryItemList.get(position).getImgPath(), options);
         imgDisplay.setImageBitmap(bitmap);
 
         ((ViewPager) container).addView(viewLayout);
@@ -64,6 +64,7 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         ((ViewPager) container).removeView((RelativeLayout) object);
+
 
     }
 }

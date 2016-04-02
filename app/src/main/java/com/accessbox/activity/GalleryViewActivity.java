@@ -7,8 +7,11 @@ import android.support.v4.view.ViewPager;
 
 import com.accessbox.R;
 import com.accessbox.adapter.GalleryViewPagerAdapter;
+import com.accessbox.category.SubCategoryItem;
 import com.accessbox.util.AppConstants;
 import com.accessbox.util.ListUtils;
+
+import java.util.ArrayList;
 
 /**
  * Created by shrutika on 13/3/16.
@@ -26,9 +29,8 @@ public class GalleryViewActivity extends Activity {
 
         Intent intent = getIntent();
         int position = intent.getIntExtra(AppConstants.position, 0);
-        String category = intent.getStringExtra(AppConstants.categoryName);
-        adapter = new GalleryViewPagerAdapter(GalleryViewActivity.this,
-                ListUtils.getSubCategoryItemList(category));
+        ArrayList<SubCategoryItem> itemList = (ArrayList<SubCategoryItem>) intent.getSerializableExtra(AppConstants.itemList);
+        adapter = new GalleryViewPagerAdapter(GalleryViewActivity.this, itemList);
 
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(position);

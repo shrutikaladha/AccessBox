@@ -20,38 +20,37 @@ import java.util.ArrayList;
  */
 public class SubCategoryItemAdapter extends RecyclerView.Adapter<SubCategoryRecyclerViewHolder> {
 
-    ArrayList<SubCategoryItem> subCategoryItemList;
+    ArrayList<SubCategoryItem> mSubCategoryItemList;
     LayoutInflater mInflater;
     Context mContext;
-    public ImageLoader imageLoader = ImageLoader.getInstance();
-    private DisplayImageOptions options;
-    public String categoryName;
+    ImageLoader mImageLoader = ImageLoader.getInstance();
+    DisplayImageOptions mOptions;
 
-    public SubCategoryItemAdapter(Context context, ArrayList<SubCategoryItem> subCategoryItemArrayList) {
+
+    public SubCategoryItemAdapter(Context context, ArrayList<SubCategoryItem> subCategoryItemList) {
         mContext = context;
         mInflater = LayoutInflater.from(mContext);
-        subCategoryItemList = new ArrayList<SubCategoryItem>();
-        this.subCategoryItemList = subCategoryItemArrayList;
-        this.categoryName = categoryName;
-        options = new DisplayImageOptions.Builder().cacheInMemory().cacheOnDisc().build();
-        imageLoader.init(ImageLoaderConfiguration.createDefault(mContext));
+        mSubCategoryItemList = new ArrayList<SubCategoryItem>();
+        mSubCategoryItemList = subCategoryItemList;
+        mOptions = new DisplayImageOptions.Builder().cacheInMemory().cacheOnDisc().build();
+        mImageLoader.init(ImageLoaderConfiguration.createDefault(mContext));
     }
 
 
     @Override
     public SubCategoryRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.sub_category_item_layout, parent, false);
-        SubCategoryRecyclerViewHolder rcv = new SubCategoryRecyclerViewHolder(layoutView, mContext,categoryName);
+        SubCategoryRecyclerViewHolder rcv = new SubCategoryRecyclerViewHolder(layoutView, mContext,mSubCategoryItemList);
         return rcv;
     }
 
     @Override
     public void onBindViewHolder(SubCategoryRecyclerViewHolder holder, int position) {
-        imageLoader.displayImage("file://"+subCategoryItemList.get(position).getImgPath(), holder.ivCategory);
+        mImageLoader.displayImage("file://"+mSubCategoryItemList.get(position).getImgPath(), holder.mIvCategory);
     }
 
     @Override
     public int getItemCount() {
-        return this.subCategoryItemList.size();
+        return mSubCategoryItemList.size();
     }
 }

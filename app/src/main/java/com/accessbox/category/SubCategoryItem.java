@@ -1,9 +1,11 @@
 package com.accessbox.category;
 
+import java.io.Serializable;
+
 /**
  * Created by shrutika on 11/3/16.
  */
-public class SubCategoryItem {
+public class SubCategoryItem implements Serializable{
     private String catId;
     private String itemId;
     private String brandName;

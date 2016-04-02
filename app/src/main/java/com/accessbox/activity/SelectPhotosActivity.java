@@ -60,7 +60,7 @@ public class SelectPhotosActivity extends AppCompatActivity {
     String currentPhotoPath = "";
     String categoryType;
     GridView gridView;
-    ImageLoader imageLoader = ImageLoader.getInstance();
+    ImageLoader imageLoader;
     Toolbar toolbar;
 
     @Override
