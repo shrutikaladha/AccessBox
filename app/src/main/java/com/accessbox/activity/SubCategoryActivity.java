@@ -85,7 +85,8 @@ public class SubCategoryActivity extends BaseActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == UPLOAD) {
             if (resultCode == Activity.RESULT_OK) {
-                scanFile(ListUtils.getCurrentCategoryFolderPath(mainCategoryItem.getCategoryName()));
+                ListUtils.setSubCategoryItemList(mainCategoryItem.getCategoryName(),data.getStringArrayListExtra("selectedPath"));
+               // scanFile(ListUtils.getCurrentCategoryFolderPath(mainCategoryItem.getCategoryName()));
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(this, "Problem uploading images.", Toast.LENGTH_SHORT).show();

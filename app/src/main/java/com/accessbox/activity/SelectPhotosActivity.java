@@ -195,50 +195,14 @@ public class SelectPhotosActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please select at least one image", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Added " + selectedUrlList.size() + " photos", Toast.LENGTH_LONG).show();
-                try {
-                    addImagesToFolder();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
                 Intent i = new Intent();
                 setResult(RESULT_OK, i);
+                i.putStringArrayListExtra("selectedPath",selectedUrlList);
                 finish();
             }
         }
     };
 
-    private void addImagesToFolder() throws IOException {
-        ArrayList<String> originalPathList = new ArrayList<String>();
-        ArrayList<String> targetPathList = new ArrayList<String>();
-        String filename;
-        String targetPath = ExternalStorageDirectoryPath + "/" + DIRECTORY + "/" + categoryType + "/";
-        File f = new File(targetPath);
-        if (!f.exists())
-            f.mkdirs();
-        for (int i = 0; i < selectedUrlList.size(); i++) {
-            originalPathList.add(selectedUrlList.get(i));
-            filename = originalPathList.get(i).substring(originalPathList.get(i).lastIndexOf("/") + 1);
-            targetPathList.add(targetPath + filename + "/");
-        }
-        copyFile(originalPathList, targetPathList);
-    }
-
-    public void copyFile(ArrayList<String> originalPathList, ArrayList<String> targetPathList) throws IOException {
-        String selectedImagePath, string;
-        for (int i = 0; i < originalPathList.size(); i++) {
-            selectedImagePath = originalPathList.get(i);
-            string = targetPathList.get(i);
-            InputStream in = new FileInputStream(selectedImagePath);
-            OutputStream out = new FileOutputStream(string);
-            byte[] buf = new byte[1024];
-            int len;
-            while ((len = in.read(buf)) > 0) {
-                out.write(buf, 0, len);
-            }
-            in.close();
-            out.close();
-        }
-    }
 
     View.OnClickListener captureOnClickListener = new View.OnClickListener() {
         @Override

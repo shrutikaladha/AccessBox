@@ -18,13 +18,8 @@ public class ListUtils {
     static ArrayList<MainCategoryItem> mainCategoryItemsList = new ArrayList<MainCategoryItem>();
     private static ArrayList<SubCategoryItem> favoriteItemsList =  new ArrayList<SubCategoryItem>();
     private static ArrayList<SubCategoryItem> shortlistItemsList =  new ArrayList<SubCategoryItem>();
+    private static ArrayList<String> mSubItemsPathArrayList =  new ArrayList<String>();
     static SharedPrefs sharedPrefs = new SharedPrefs();
-
-
-    public static String getCurrentCategoryFolderPath(String category) {
-        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/AccessBox/"+category ;
-        return filePath;
-    }
 
     public static ArrayList<MainCategoryItem> getMainCategoryItemList() {
         return mainCategoryItemsList;
@@ -53,21 +48,19 @@ public class ListUtils {
         }
     }
 
+    public static void setSubCategoryItemList(String category, ArrayList<String> imgPaths) {
+        mSubItemsPathArrayList = imgPaths;
+    }
+
     public static ArrayList<SubCategoryItem> getSubCategoryItemList(String category) {
+
         ArrayList<SubCategoryItem> subCategoryItemsList = new ArrayList<SubCategoryItem>();
-        String path = getCurrentCategoryFolderPath(category) ;
-        File[] subCategoryList;
-        File f = new File(path);
-        if(!f.exists())
-            f.mkdir();
-        subCategoryList = f.listFiles();
-        if(subCategoryList != null) {
-            for (int i = 0; i < subCategoryList.length; i++) {
-                SubCategoryItem subCategoryItem = new SubCategoryItem();
-                subCategoryItem.setImgPath(subCategoryList[i].getPath());
-                subCategoryItem.setCatId(category);
-                subCategoryItemsList.add(subCategoryItem);
-            }
+        ArrayList<String> pathArray = mSubItemsPathArrayList;
+        for(int i=0;i<pathArray.size();i++) {
+            SubCategoryItem subCategoryItem = new SubCategoryItem();
+            subCategoryItem.setImgPath(pathArray.get(i));
+            subCategoryItem.setCatId(category);
+            subCategoryItemsList.add(subCategoryItem);
         }
         return subCategoryItemsList;
     }
