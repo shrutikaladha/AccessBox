@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FC6C85</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#FFA500</color>
+    <color name="colorPrimaryDark">#cc8400</color>
+    <color name="colorAccent">#00C87C</color>
     <color name="male_profile_color">#303F9F</color>
     <color name="female_profile_color">#EB7757</color>
-    <color name="theme_color">#FC6C85</color>
-    <color name="main_category_text_color">#EB7757</color>
+    <color name="theme_color">#FFA500</color>
+    <color name="main_category_text_color">#f5f5f5</color>
     <color name="sub_category_text_color">#EB7757</color>
 </resources>

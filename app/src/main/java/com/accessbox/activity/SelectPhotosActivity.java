@@ -72,7 +72,9 @@ public class SelectPhotosActivity extends AppCompatActivity {
         gridView = (GridView) findViewById(R.id.gridView);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Please select photos");
+        toolbar.setTitleTextAppearance(this, R.style.HeadingStyle);
         setSupportActionBar(toolbar);
+
         if (getIntent() != null)
             categoryType = getIntent().getStringExtra("CATEGORY_TYPE");
         selectBtn.setOnClickListener(selectOnClickListener);
