@@ -10,6 +10,7 @@ public class MainCategoryItem implements Serializable{
     private String categoryName;
     private int categoryImg;
     private String shortNote;
+    private String categoryColor;
 
     public MainCategoryItem(String categoryName, int categoryImg, String shortNote, String catId) {
         this.catId = catId;
@@ -29,23 +30,23 @@ public class MainCategoryItem implements Serializable{
         this.categoryImg = categoryImg;
     }
 
-    private void setCatId(String catId) {
+    public void setCatId(String catId) {
         this.catId = catId;
     }
 
-    private void setCategoryName(String categoryName) {
+    public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
 
-    private void setCategoryImg(int categoryImg) {
+    public void setCategoryImg(int categoryImg) {
         this.categoryImg = categoryImg;
     }
 
-    private void setShortNote(String shortNote) {
+    public void setShortNote(String shortNote) {
         this.shortNote = shortNote;
     }
 
-    private String getCatId() {
+    public String getCatId() {
         return catId;
     }
 
@@ -59,6 +60,14 @@ public class MainCategoryItem implements Serializable{
 
     public String getCategoryName() {
         return categoryName;
+    }
+
+    public void setCategoryColor(String color) {
+        categoryColor = color;
+    }
+
+    public String getCategoryColor() {
+        return categoryColor;
     }
 
 }

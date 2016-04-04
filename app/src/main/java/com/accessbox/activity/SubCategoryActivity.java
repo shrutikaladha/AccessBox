@@ -2,6 +2,8 @@ package com.accessbox.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,12 +31,14 @@ public class SubCategoryActivity extends BaseActivity {
     SubCategoryItemAdapter subCategoryItemAdapter;
     MainCategoryItem mainCategoryItem;
     private final int UPLOAD = 1;
+    int position;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_category_layout);
         mainCategoryItem = (MainCategoryItem) getIntent().getSerializableExtra("Category");
+        position = getIntent().getIntExtra("position", 0);
         setCoverPhoto();
         setupFab();
         ArrayList<SubCategoryItem> subCategoryItemList = new ArrayList<SubCategoryItem>();
@@ -61,7 +65,25 @@ public class SubCategoryActivity extends BaseActivity {
 
     private void setCoverPhoto() {
         CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
-        collapsingToolbarLayout.setBackground(getResources().getDrawable(mainCategoryItem.getCategoryImg()));
+        switch (position % 5) {
+            case 0:
+                collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.vibrant_color_1));
+                break;
+            case 1:
+                collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.vibrant_color_2));
+                break;
+            case 2:
+                collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.vibrant_color_3));
+                break;
+            case 3:
+                collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.vibrant_color_4));
+                break;
+            case 4:
+                collapsingToolbarLayout.setBackgroundColor(getResources().getColor(R.color.vibrant_color_5));
+                break;
+        }
+
+        //collapsingToolbarLayout.setBackground(getResources().getDrawable(mainCategoryItem.getCategoryImg()));
         collapsingToolbarLayout.setTitle(mainCategoryItem.getCategoryName());
     }
 
@@ -85,8 +107,9 @@ public class SubCategoryActivity extends BaseActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == UPLOAD) {
             if (resultCode == Activity.RESULT_OK) {
-                ListUtils.setSubCategoryItemList(mainCategoryItem.getCategoryName(),data.getStringArrayListExtra("selectedPath"));
-               // scanFile(ListUtils.getCurrentCategoryFolderPath(mainCategoryItem.getCategoryName()));
+                ListUtils.setSubCategoryItemList(mainCategoryItem.getCategoryName(), data.getStringArrayListExtra("selectedPath"));
+                subCategoryItemAdapter.notifyDataSetChanged();
+                // scanFile(ListUtils.getCurrentCategoryFolderPath(mainCategoryItem.getCategoryName()));
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(this, "Problem uploading images.", Toast.LENGTH_SHORT).show();

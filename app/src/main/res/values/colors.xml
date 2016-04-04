@@ -8,5 +8,11 @@
     <color name="theme_color">#FFA500</color>
     <color name="main_category_text_color">#f5f5f5</color>
     <color name="sub_category_text_color">#EB7757</color>
+    <color name="vibrant_color_1">#CE98AB</color>
+    <color name="vibrant_color_2">#5CB269</color>
+    <color name="vibrant_color_3">#FF9784</color>
+    <color name="vibrant_color_4">#6CB99E</color>
+    <color name="vibrant_color_5">#FFC966</color>
+
     <color name="main_category_view_title_text_color">#000000</color>
 </resources>

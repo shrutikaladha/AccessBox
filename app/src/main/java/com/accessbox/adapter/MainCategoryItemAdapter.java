@@ -17,24 +17,48 @@ import java.util.ArrayList;
  */
 public class MainCategoryItemAdapter extends RecyclerView.Adapter<MainCategoryRecyclerViewHolder> {
     private ArrayList<MainCategoryItem> itemList;
-    private Context context;
+    private Context mContext;
 
     public MainCategoryItemAdapter(Context context, ArrayList<MainCategoryItem> itemList) {
         this.itemList = itemList;
-        this.context = context;
+        mContext = context;
     }
 
     @Override
     public MainCategoryRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_category_item_layout, parent, false);
-        MainCategoryRecyclerViewHolder rcv = new MainCategoryRecyclerViewHolder(layoutView, context);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_category_item_list_layout, parent, false);
+        MainCategoryRecyclerViewHolder rcv = new MainCategoryRecyclerViewHolder(layoutView, mContext);
         return rcv;
     }
 
     @Override
     public void onBindViewHolder(MainCategoryRecyclerViewHolder holder, int position) {
+        switch (position % 5) {
+            case 0:
+                holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_1));
+                itemList.get(position).setCategoryColor("@string/vibrant_color_1");
+                break;
+            case 1:
+                holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_2));
+                itemList.get(position).setCategoryColor("@string/vibrant_color_2");
+                break;
+            case 2:
+                holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_3));
+                itemList.get(position).setCategoryColor("@string/vibrant_color_3");
+                break;
+            case 3:
+                holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_4));
+                itemList.get(position).setCategoryColor("@string/vibrant_color_4");
+                break;
+            case 4:
+                holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_5));
+                itemList.get(position).setCategoryColor("@string/vibrant_color_5");
+                break;
+
+        }
+        // holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_1));
         holder.tvCategoryTitle.setText(itemList.get(position).getCategoryName());
-        holder.ivCategory.setImageResource(itemList.get(position).getCategoryImg());
+//        holder.ivCategory.setImageResource(itemList.get(position).getCategoryImg());
     }
 
     @Override
