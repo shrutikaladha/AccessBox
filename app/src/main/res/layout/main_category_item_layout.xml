@@ -16,7 +16,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/ivCategory"
+            android:id="@+id/iv_category"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.2"
@@ -24,14 +24,14 @@
             android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/tvCategoryTitle"
+            android:id="@+id/tv_category_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.8"
             android:gravity="center"
-            android:textSize="12dp"
+            android:textSize="@dimen/font_title_text_size"
             android:text="Watches"
-            android:textColor="#000000"/>
+            android:textColor="@color/main_category_view_title_text_color"/>
 
     </LinearLayout>
 

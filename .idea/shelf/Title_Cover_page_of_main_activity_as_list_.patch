@@ -1,0 +1,190 @@
+Index: app/src/main/res/layout/main_category_item_list_layout.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/main_category_item_list_layout.xml	(revision )
++++ app/src/main/res/layout/main_category_item_list_layout.xml	(revision )
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:id="@+id/ll_main_view"
++    android:orientation="vertical"
++    android:layout_width="match_parent"
++    android:layout_marginTop="3dp"
++    android:layout_marginBottom="2dp"
++    android:layout_height="70dp">
++
++    <TextView
++        android:id="@+id/tv_category_title"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:layout_weight="0.8"
++        android:gravity="center"
++        android:textSize="@dimen/font_title_text_size"
++        android:text="Watches"
++        android:textColor="@color/main_category_text_color"/>
++
++</LinearLayout>
+\ No newline at end of file
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(date 1459674091000)
++++ app/src/main/res/values/colors.xml	(revision )
+@@ -8,4 +8,10 @@
+     <color name="theme_color">#FFA500</color>
+     <color name="main_category_text_color">#f5f5f5</color>
+     <color name="sub_category_text_color">#EB7757</color>
++    <color name="vibrant_color_1">#CE98AB</color>
++    <color name="vibrant_color_2">#5CB269</color>
++    <color name="vibrant_color_3">#FF9784</color>
++    <color name="vibrant_color_4">#6CB99E</color>
++    <color name="vibrant_color_5">#FFC966</color>
++
+ </resources>
+Index: app/src/main/res/layout/main_category_item_layout.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/main_category_item_layout.xml	(date 1459674091000)
++++ app/src/main/res/layout/main_category_item_layout.xml	(revision )
+@@ -16,7 +16,7 @@
+         android:orientation="vertical">
+ 
+         <ImageView
+-            android:id="@+id/ivCategory"
++            android:id="@+id/iv_category"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_weight="0.2"
+@@ -24,7 +24,7 @@
+             android:scaleType="centerCrop" />
+ 
+         <TextView
+-            android:id="@+id/tvCategoryTitle"
++            android:id="@+id/tv_category_title"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_weight="0.8"
+\ No newline at end of file
+Index: app/src/main/java/com/accessbox/fragment/MainCategoryFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/accessbox/fragment/MainCategoryFragment.java	(date 1459674091000)
++++ app/src/main/java/com/accessbox/fragment/MainCategoryFragment.java	(revision )
+@@ -6,6 +6,7 @@
+ import android.support.annotation.Nullable;
+ import android.support.v4.app.Fragment;
+ import android.support.v7.widget.GridLayoutManager;
++import android.support.v7.widget.LinearLayoutManager;
+ import android.support.v7.widget.RecyclerView;
+ import android.view.LayoutInflater;
+ import android.view.View;
+@@ -43,9 +44,10 @@
+ 
+     private void setUpList() {
+         ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList();
+-        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
++        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
++       // GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
+         recyclerView.setHasFixedSize(true);
+-        recyclerView.setLayoutManager(gridLayoutManager);
++        recyclerView.setLayoutManager(linearLayoutManager);
+         MainCategoryItemAdapter mainCategoryItemAdapter = new MainCategoryItemAdapter(mContext, mainCategoryItemList);
+         recyclerView.setAdapter(mainCategoryItemAdapter);
+     }
+Index: app/src/main/java/com/accessbox/adapter/MainCategoryItemAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/accessbox/adapter/MainCategoryItemAdapter.java	(date 1459674091000)
++++ app/src/main/java/com/accessbox/adapter/MainCategoryItemAdapter.java	(revision )
+@@ -17,24 +17,38 @@
+  */
+ public class MainCategoryItemAdapter extends RecyclerView.Adapter<MainCategoryRecyclerViewHolder> {
+     private ArrayList<MainCategoryItem> itemList;
+-    private Context context;
++    private Context mContext;
+ 
+     public MainCategoryItemAdapter(Context context, ArrayList<MainCategoryItem> itemList) {
+         this.itemList = itemList;
+-        this.context = context;
++        mContext = context;
+     }
+ 
+     @Override
+     public MainCategoryRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+-        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_category_item_layout, parent, false);
+-        MainCategoryRecyclerViewHolder rcv = new MainCategoryRecyclerViewHolder(layoutView, context);
++        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_category_item_list_layout, parent, false);
++        MainCategoryRecyclerViewHolder rcv = new MainCategoryRecyclerViewHolder(layoutView, mContext);
+         return rcv;
+     }
+ 
+     @Override
+     public void onBindViewHolder(MainCategoryRecyclerViewHolder holder, int position) {
++        switch(position % 5) {
++            case 0:  holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_1));
++                     break;
++            case 1:  holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_2));
++                    break;
++            case 2:  holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_3));
++                break;
++            case 3:  holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_4));
++                break;
++            case 4:  holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_5));
++                break;
++
++        }
++       // holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_1));
+         holder.tvCategoryTitle.setText(itemList.get(position).getCategoryName());
+-        holder.ivCategory.setImageResource(itemList.get(position).getCategoryImg());
++//        holder.ivCategory.setImageResource(itemList.get(position).getCategoryImg());
+     }
+ 
+     @Override
+Index: app/src/main/java/com/accessbox/category/MainCategoryRecyclerViewHolder.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/accessbox/category/MainCategoryRecyclerViewHolder.java	(date 1459674091000)
++++ app/src/main/java/com/accessbox/category/MainCategoryRecyclerViewHolder.java	(revision )
+@@ -2,9 +2,11 @@
+ 
+ import android.content.Context;
+ import android.content.Intent;
++import android.graphics.LinearGradient;
+ import android.support.v7.widget.RecyclerView;
+ import android.view.View;
+ import android.widget.ImageView;
++import android.widget.LinearLayout;
+ import android.widget.TextView;
+ 
+ import com.accessbox.R;
+@@ -18,13 +20,15 @@
+ 
+     public TextView tvCategoryTitle;
+     public ImageView ivCategory;
++    public LinearLayout llMainView;
+     public Context mContext;
+ 
+     public MainCategoryRecyclerViewHolder(View itemView, Context context) {
+         super(itemView);
+         itemView.setOnClickListener(this);
+-        tvCategoryTitle = (TextView) itemView.findViewById(R.id.tvCategoryTitle);
+-        ivCategory = (ImageView) itemView.findViewById(R.id.ivCategory);
++        llMainView = (LinearLayout) itemView.findViewById(R.id.ll_main_view);
++        tvCategoryTitle = (TextView) itemView.findViewById(R.id.tv_category_title);
++        ivCategory = (ImageView) itemView.findViewById(R.id.iv_category);
+         mContext = context;
+     }
+ 
+\ No newline at end of file

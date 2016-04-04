@@ -23,8 +23,8 @@ public class MainCategoryRecyclerViewHolder extends RecyclerView.ViewHolder impl
     public MainCategoryRecyclerViewHolder(View itemView, Context context) {
         super(itemView);
         itemView.setOnClickListener(this);
-        tvCategoryTitle = (TextView) itemView.findViewById(R.id.tvCategoryTitle);
-        ivCategory = (ImageView) itemView.findViewById(R.id.ivCategory);
+        tvCategoryTitle = (TextView) itemView.findViewById(R.id.tv_category_title);
+        ivCategory = (ImageView) itemView.findViewById(R.id.iv_category);
         mContext = context;
     }
 
