@@ -32,6 +32,8 @@ public class SubCategoryActivity extends BaseActivity {
     MainCategoryItem mainCategoryItem;
     private final int UPLOAD = 1;
     int position;
+    ArrayList<SubCategoryItem> subCategoryItemList;
+    RecyclerView recyclerView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,10 +43,10 @@ public class SubCategoryActivity extends BaseActivity {
         position = getIntent().getIntExtra("position", 0);
         setCoverPhoto();
         setupFab();
-        ArrayList<SubCategoryItem> subCategoryItemList = new ArrayList<SubCategoryItem>();
+        subCategoryItemList = new ArrayList<SubCategoryItem>();
         subCategoryItemList = ListUtils.getSubCategoryItemList(mainCategoryItem.getCategoryName());
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(gridLayoutManager);
         subCategoryItemAdapter = new SubCategoryItemAdapter(this, subCategoryItemList);
@@ -108,8 +110,8 @@ public class SubCategoryActivity extends BaseActivity {
         if (requestCode == UPLOAD) {
             if (resultCode == Activity.RESULT_OK) {
                 ListUtils.setSubCategoryItemList(mainCategoryItem.getCategoryName(), data.getStringArrayListExtra("selectedPath"));
-                subCategoryItemAdapter.notifyDataSetChanged();
-                // scanFile(ListUtils.getCurrentCategoryFolderPath(mainCategoryItem.getCategoryName()));
+                subCategoryItemList = ListUtils.getSubCategoryItemList(mainCategoryItem.getCategoryName());
+                recyclerView.setAdapter(subCategoryItemAdapter);
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(this, "Problem uploading images.", Toast.LENGTH_SHORT).show();

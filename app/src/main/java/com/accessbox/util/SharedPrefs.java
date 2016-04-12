@@ -22,6 +22,32 @@ public class SharedPrefs {
         super();
     }
 
+
+    public void setCategoryList(Context context, List itemList, String categoryId) {
+        settings = context.getSharedPreferences(AppConstants.PREFS_NAME, Context.MODE_PRIVATE);
+        editor = settings.edit();
+        Gson gson = new Gson();
+        String jsonList = gson.toJson(itemList);
+        editor.putString(categoryId, jsonList);
+        editor.commit();
+    }
+
+    public ArrayList getCategoryList(Context context, String categoryId) {
+// used for retrieving arraylist from json formatted string
+        SharedPreferences settings;
+        List itemList;
+        ArrayList<SubCategoryItem> favoriteArrayList = new ArrayList<SubCategoryItem>();
+        settings = context.getSharedPreferences(AppConstants.PREFS_NAME, Context.MODE_PRIVATE);
+        if (settings.contains(categoryId)) {
+            String jsonList = settings.getString(categoryId, null);
+            Gson gson = new Gson();
+            SubCategoryItem[] subCategoryItemList = gson.fromJson(jsonList, SubCategoryItem[].class);
+            itemList = Arrays.asList(subCategoryItemList);
+            favoriteArrayList = new ArrayList(itemList);
+        }
+        return favoriteArrayList;
+    }
+
     public void setFavoriteList(Context context, List favorites) {
 // used for store arrayList in json format
         settings = context.getSharedPreferences(AppConstants.PREFS_NAME, Context.MODE_PRIVATE);

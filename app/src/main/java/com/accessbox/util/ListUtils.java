@@ -21,6 +21,8 @@ public class ListUtils {
     private static ArrayList<String> mSubItemsPathArrayList =  new ArrayList<String>();
     static SharedPrefs sharedPrefs = new SharedPrefs();
 
+
+
     public static ArrayList<MainCategoryItem> getMainCategoryItemList() {
         return mainCategoryItemsList;
     }
