@@ -43,7 +43,7 @@ public class FavoriteFragment extends Fragment {
 
     private void setUpList() {
         ArrayList<SubCategoryItem> favoriteItemList = new ArrayList<SubCategoryItem>();
-        favoriteItemList = ListUtils.getFavoriteItemsList(mContext);
+        favoriteItemList = ListUtils.getSubCategoryItemList(mContext, "Favorite");
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(gridLayoutManager);

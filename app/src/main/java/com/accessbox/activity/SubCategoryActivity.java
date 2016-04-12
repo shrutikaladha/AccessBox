@@ -44,7 +44,7 @@ public class SubCategoryActivity extends BaseActivity {
         setCoverPhoto();
         setupFab();
         subCategoryItemList = new ArrayList<SubCategoryItem>();
-        subCategoryItemList = ListUtils.getSubCategoryItemList(mainCategoryItem.getCategoryName());
+        subCategoryItemList = ListUtils.getSubCategoryItemList(this,mainCategoryItem.getCategoryName());
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
          recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -98,7 +98,7 @@ public class SubCategoryActivity extends BaseActivity {
                     public void onScanCompleted(String path, Uri uri) {
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                ListUtils.getSubCategoryItemList(mainCategoryItem.getCategoryName());
+                                //ListUtils.getSubCategoryItemList(this,mainCategoryItem.getCategoryName());
                             }
                         });
                     }
@@ -109,8 +109,9 @@ public class SubCategoryActivity extends BaseActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == UPLOAD) {
             if (resultCode == Activity.RESULT_OK) {
-                ListUtils.setSubCategoryItemList(mainCategoryItem.getCategoryName(), data.getStringArrayListExtra("selectedPath"));
-                subCategoryItemList = ListUtils.getSubCategoryItemList(mainCategoryItem.getCategoryName());
+                ArrayList<SubCategoryItem> subCategoryItemList = (ArrayList<SubCategoryItem>) data.getSerializableExtra("selectedPath");
+                ListUtils.addToCategory(this, mainCategoryItem.getCategoryName(),subCategoryItemList);
+                subCategoryItemList = ListUtils.getSubCategoryItemList(this, mainCategoryItem.getCategoryName());
                 recyclerView.setAdapter(subCategoryItemAdapter);
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {

@@ -23,7 +23,7 @@ public class SharedPrefs {
     }
 
 
-    public void setCategoryList(Context context, List itemList, String categoryId) {
+    public void setCategoryList(Context context, ArrayList<SubCategoryItem> itemList, String categoryId) {
         settings = context.getSharedPreferences(AppConstants.PREFS_NAME, Context.MODE_PRIVATE);
         editor = settings.edit();
         Gson gson = new Gson();

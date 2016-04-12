@@ -50,10 +50,10 @@ public class SubCategoryRecyclerViewHolder extends RecyclerView.ViewHolder imple
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_favorite:
-                                ListUtils.addToFavorites(mContext, mSubCategoryItemsList.get(getAdapterPosition()));
+                                ListUtils.addToCategory(mContext, "Favorite", mSubCategoryItemsList.get(getAdapterPosition()));
                                 break;
                             case R.id.action_shortlist:
-                                ListUtils.addToShortlist(mContext, mSubCategoryItemsList.get(getAdapterPosition()));
+                                ListUtils.addToCategory(mContext, "Shortlist", mSubCategoryItemsList.get(getAdapterPosition()));
                                 break;
                             case R.id.action_share:
                                 shareIt();

@@ -42,7 +42,7 @@ public class ShortlistFragment extends Fragment {
 
     private void setUpList() {
         ArrayList<SubCategoryItem> shortlistItemList = new ArrayList<SubCategoryItem>();
-        shortlistItemList = ListUtils.getShortlistItemsList(mContext);
+        shortlistItemList = ListUtils.getSubCategoryItemList(mContext, "Shortlist");
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(gridLayoutManager);

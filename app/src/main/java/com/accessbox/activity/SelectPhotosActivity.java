@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.accessbox.R;
+import com.accessbox.category.SubCategoryItem;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -199,11 +200,23 @@ public class SelectPhotosActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Added " + selectedUrlList.size() + " photos", Toast.LENGTH_LONG).show();
                 Intent i = new Intent();
                 setResult(RESULT_OK, i);
-                i.putStringArrayListExtra("selectedPath",selectedUrlList);
+                ArrayList<SubCategoryItem> itemArray = convertImagePathToObject(selectedUrlList);
+
+                i.putExtra("selectedPath",itemArray);
                 finish();
             }
         }
     };
+
+    private ArrayList<SubCategoryItem> convertImagePathToObject(ArrayList<String> imgPaths) {
+        ArrayList<SubCategoryItem> itemArray = new ArrayList<SubCategoryItem>();
+        for(int i=0;i<imgPaths.size();i++) {
+            SubCategoryItem subCategoryItem = new SubCategoryItem();
+            subCategoryItem.setImgPath(imgPaths.get(i));
+            itemArray.add(subCategoryItem);
+        }
+        return itemArray;
+    }
 
 
     View.OnClickListener captureOnClickListener = new View.OnClickListener() {

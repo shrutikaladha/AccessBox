@@ -16,11 +16,8 @@ import java.util.ArrayList;
 public class ListUtils {
 
     static ArrayList<MainCategoryItem> mainCategoryItemsList = new ArrayList<MainCategoryItem>();
-    private static ArrayList<SubCategoryItem> favoriteItemsList =  new ArrayList<SubCategoryItem>();
-    private static ArrayList<SubCategoryItem> shortlistItemsList =  new ArrayList<SubCategoryItem>();
-    private static ArrayList<String> mSubItemsPathArrayList =  new ArrayList<String>();
-    static SharedPrefs sharedPrefs = new SharedPrefs();
 
+    static SharedPrefs sharedPrefs = new SharedPrefs();
 
 
     public static ArrayList<MainCategoryItem> getMainCategoryItemList() {
@@ -50,52 +47,45 @@ public class ListUtils {
         }
     }
 
-    public static void setSubCategoryItemList(String category, ArrayList<String> imgPaths) {
-        mSubItemsPathArrayList = imgPaths;
+    public static void setSubCategoryItemList(Context context, String category, ArrayList<SubCategoryItem> imgPaths) {
+       // mSubItemsPathArrayList = imgPaths;
+        sharedPrefs.setCategoryList(context,imgPaths,category);
     }
 
-    public static ArrayList<SubCategoryItem> getSubCategoryItemList(String category) {
-
-        ArrayList<SubCategoryItem> subCategoryItemsList = new ArrayList<SubCategoryItem>();
+    public static ArrayList<SubCategoryItem> getSubCategoryItemList(Context context, String category) {
+        ArrayList<SubCategoryItem> subCategoryItemsList = sharedPrefs.getCategoryList(context, category);
+     /*   ArrayList<SubCategoryItem> subCategoryItemsList = new ArrayList<SubCategoryItem>();
         ArrayList<String> pathArray = mSubItemsPathArrayList;
         for(int i=0;i<pathArray.size();i++) {
             SubCategoryItem subCategoryItem = new SubCategoryItem();
             subCategoryItem.setImgPath(pathArray.get(i));
             subCategoryItem.setCatId(category);
             subCategoryItemsList.add(subCategoryItem);
-        }
+        }*/
         return subCategoryItemsList;
     }
 
-    public static void addToFavorites(Context context, SubCategoryItem subCategoryItem) {
-        favoriteItemsList.add(subCategoryItem);
-        sharedPrefs.addToFavorite(context, subCategoryItem);
+    public static void addToCategory(Context context, String category, SubCategoryItem subCategoryItem) {
+        ArrayList<SubCategoryItem> itemList = getSubCategoryItemList(context, category);
+        itemList.add(subCategoryItem);
+        setSubCategoryItemList(context,category,itemList);
     }
 
-    public static void removeFromFavorites(Context context, SubCategoryItem subCategoryItem) {
-        favoriteItemsList.remove(subCategoryItem);
-        sharedPrefs.removeFromFavorite(context, subCategoryItem);
+    public static void addToCategory(Context context, String category, ArrayList<SubCategoryItem> subCategoryItemList) {
+        ArrayList<SubCategoryItem> itemList = getSubCategoryItemList(context, category);
+        for(int i=0;i<subCategoryItemList.size();i++) {
+            itemList.add(subCategoryItemList.get(i));
+        }
+
+        setSubCategoryItemList(context, category, itemList);
     }
 
-    public static ArrayList<SubCategoryItem> getFavoriteItemsList(Context context) {
-        favoriteItemsList = sharedPrefs.getFavoriteList(context);
-        return favoriteItemsList;
+    public static void removeFromCategory(Context context, String category, SubCategoryItem subCategoryItem) {
+        ArrayList<SubCategoryItem> itemList = getSubCategoryItemList(context, category);
+        itemList.remove(subCategoryItem);
+        setSubCategoryItemList(context,category,itemList);
     }
 
-    public static void addToShortlist(Context context,SubCategoryItem subCategoryItem) {
-        shortlistItemsList.add(subCategoryItem);
-        sharedPrefs.addToShortlist(context, subCategoryItem);
-    }
-
-    public static void removeFromShortlist(Context context,SubCategoryItem subCategoryItem) {
-        shortlistItemsList.remove(subCategoryItem);
-        sharedPrefs.removeFromShortlist(context, subCategoryItem);
-    }
-
-    public static ArrayList<SubCategoryItem> getShortlistItemsList(Context context) {
-        shortlistItemsList = sharedPrefs.getShortlistedItemsList(context);
-        return shortlistItemsList;
-    }
 
 
 }
