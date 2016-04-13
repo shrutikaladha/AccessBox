@@ -28,29 +28,34 @@ import java.util.ArrayList;
  * Created by shrutika on 24/3/16.
  */
 public class SubCategoryActivity extends BaseActivity {
-    SubCategoryItemAdapter subCategoryItemAdapter;
-    MainCategoryItem mainCategoryItem;
+    SubCategoryItemAdapter mSubCategoryItemAdapter;
+    MainCategoryItem mMainCategoryItem;
     private final int UPLOAD = 1;
     int position;
-    ArrayList<SubCategoryItem> subCategoryItemList;
-    RecyclerView recyclerView;
+    ArrayList<SubCategoryItem> mSubCategoryItemList;
+    RecyclerView mRecyclerView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub_category_layout);
-        mainCategoryItem = (MainCategoryItem) getIntent().getSerializableExtra("Category");
+        mMainCategoryItem = (MainCategoryItem) getIntent().getSerializableExtra("Category");
         position = getIntent().getIntExtra("position", 0);
         setCoverPhoto();
         setupFab();
-        subCategoryItemList = new ArrayList<SubCategoryItem>();
-        subCategoryItemList = ListUtils.getSubCategoryItemList(this,mainCategoryItem.getCategoryName());
+        setUpAdapter();
+
+    }
+
+    private void setUpAdapter() {
+        mSubCategoryItemList = new ArrayList<SubCategoryItem>();
+        mSubCategoryItemList = ListUtils.getSubCategoryItemList(this,mMainCategoryItem.getCategoryName());
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        subCategoryItemAdapter = new SubCategoryItemAdapter(this, subCategoryItemList);
-        recyclerView.setAdapter(subCategoryItemAdapter);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(gridLayoutManager);
+        mSubCategoryItemAdapter = new SubCategoryItemAdapter(this, mSubCategoryItemList);
+        mRecyclerView.setAdapter(mSubCategoryItemAdapter);
     }
 
     private void setupFab() {
@@ -59,7 +64,7 @@ public class SubCategoryActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SubCategoryActivity.this, SelectPhotosActivity.class);
-                i.putExtra("CATEGORY_TYPE", mainCategoryItem.getCategoryName());
+                i.putExtra("CATEGORY_TYPE", mMainCategoryItem.getCategoryName());
                 startActivityForResult(i, UPLOAD);
             }
         });
@@ -86,33 +91,18 @@ public class SubCategoryActivity extends BaseActivity {
         }
 
         //collapsingToolbarLayout.setBackground(getResources().getDrawable(mainCategoryItem.getCategoryImg()));
-        collapsingToolbarLayout.setTitle(mainCategoryItem.getCategoryName());
+        collapsingToolbarLayout.setTitle(mMainCategoryItem.getCategoryName());
     }
 
-    private void scanFile(String path) {
-        File file = new File(path);
-        Uri imageUri = Uri.fromFile(file);
-        MediaScannerConnection.scanFile(this, new String[]{imageUri.getPath()}, null,
-                new MediaScannerConnection.OnScanCompletedListener() {
-                    @Override
-                    public void onScanCompleted(String path, Uri uri) {
-                        runOnUiThread(new Runnable() {
-                            public void run() {
-                                //ListUtils.getSubCategoryItemList(this,mainCategoryItem.getCategoryName());
-                            }
-                        });
-                    }
-                });
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == UPLOAD) {
             if (resultCode == Activity.RESULT_OK) {
                 ArrayList<SubCategoryItem> subCategoryItemList = (ArrayList<SubCategoryItem>) data.getSerializableExtra("selectedPath");
-                ListUtils.addToCategory(this, mainCategoryItem.getCategoryName(),subCategoryItemList);
-                subCategoryItemList = ListUtils.getSubCategoryItemList(this, mainCategoryItem.getCategoryName());
-                recyclerView.setAdapter(subCategoryItemAdapter);
+                ListUtils.addToCategory(this, mMainCategoryItem.getCategoryName(), subCategoryItemList);
+                setUpAdapter();
+
             }
         } else if (resultCode == Activity.RESULT_CANCELED) {
             Toast.makeText(this, "Problem uploading images.", Toast.LENGTH_SHORT).show();

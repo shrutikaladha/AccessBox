@@ -16,7 +16,10 @@ import android.widget.EditText;
 
 import com.accessbox.R;
 import com.accessbox.category.MainCategoryItem;
+import com.accessbox.fragment.MainCategoryFragment;
 import com.accessbox.util.ListUtils;
+
+import javax.security.auth.callback.Callback;
 
 /**
  * Created by shrutika on 13/3/16.
@@ -61,6 +64,8 @@ public class CategoryDialogFragment extends DialogFragment {
                 } else {
                     MainCategoryItem mainCategoryItem = new MainCategoryItem(name, desc);
                     ListUtils.addCategory(mContext, mainCategoryItem);
+                    MainCategoryFragment mainCategoryFragment = new MainCategoryFragment();
+                    mainCategoryFragment.onMainCategoryItemAdded();
                     dismiss();
                 }
 

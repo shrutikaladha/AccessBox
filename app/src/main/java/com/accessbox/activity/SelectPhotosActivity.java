@@ -201,7 +201,6 @@ public class SelectPhotosActivity extends AppCompatActivity {
                 Intent i = new Intent();
                 setResult(RESULT_OK, i);
                 ArrayList<SubCategoryItem> itemArray = convertImagePathToObject(selectedUrlList);
-
                 i.putExtra("selectedPath",itemArray);
                 finish();
             }

@@ -1,6 +1,7 @@
 package com.accessbox.fragment;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import com.accessbox.R;
 import com.accessbox.adapter.MainCategoryItemAdapter;
 import com.accessbox.category.MainCategoryItem;
+import com.accessbox.dialog.CategoryDialogFragment;
 import com.accessbox.util.ListUtils;
 
 import java.util.ArrayList;
@@ -28,9 +30,9 @@ public class MainCategoryFragment extends Fragment {
     Context mContext;
 
     @Override
-    public void onAttach(Context context) {
-        mContext = context;
-        super.onAttach(context);
+    public void onAttach(Activity activity) {
+        mContext = activity;
+        super.onAttach(activity);
     }
 
     @Nullable
@@ -38,16 +40,22 @@ public class MainCategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_category_layout, null);
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-        setUpList();
+        setUpAdapter();
         return view;
     }
 
-    private void setUpList() {
+    private void setUpAdapter() {
         ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList(mContext);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         MainCategoryItemAdapter mainCategoryItemAdapter = new MainCategoryItemAdapter(mContext, mainCategoryItemList);
         recyclerView.setAdapter(mainCategoryItemAdapter);
+    }
+
+
+
+    public void onMainCategoryItemAdded() {
+        setUpAdapter();
     }
 }
