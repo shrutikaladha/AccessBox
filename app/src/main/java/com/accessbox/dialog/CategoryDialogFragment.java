@@ -1,7 +1,9 @@
 package com.accessbox.dialog;
 
 
+import android.app.Activity;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -24,11 +26,16 @@ public class CategoryDialogFragment extends DialogFragment {
     private EditText etCategoryName;
     private EditText etShortNote;
     private Button btnCreate;
+    private Context mContext;
+
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mContext = activity;
+    }
 
     public CategoryDialogFragment() {
-        // Empty constructor is required for DialogFragment
-        // Make sure not to add arguments to the constructor
-        // Use `newInstance` instead as shown below
     }
 
     @Override
@@ -49,11 +56,11 @@ public class CategoryDialogFragment extends DialogFragment {
             public void onClick(View v) {
                 String name = String.valueOf(etCategoryName.getText());
                 String desc = String.valueOf(etShortNote.getText());
-                if(name == null) {
+                if (name == null) {
                     etCategoryName.setError("Name cannot be empty");
                 } else {
-                    MainCategoryItem mainCategoryItem = new MainCategoryItem(name, name);
-                    ListUtils.addCategory(mainCategoryItem);
+                    MainCategoryItem mainCategoryItem = new MainCategoryItem(name, desc);
+                    ListUtils.addCategory(mContext, mainCategoryItem);
                     dismiss();
                 }
 

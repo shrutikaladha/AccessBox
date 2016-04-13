@@ -38,7 +38,6 @@ public class HomePageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_layout);
 
-        setProfileType(gender);
         setUpToolbar();
         setUpTabLayout();
         setUpViewPager();
@@ -100,11 +99,6 @@ public class HomePageActivity extends BaseActivity {
     }
 
 
-    private void setProfileType(String gender) {
-        ListUtils.setProfileCategory("male");
-    }
-
-
     private void setUpFab() {
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +118,6 @@ public class HomePageActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        ListUtils.setProfileCategory("none");
         super.onDestroy();
     }
 

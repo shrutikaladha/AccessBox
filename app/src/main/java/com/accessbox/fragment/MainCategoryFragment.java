@@ -43,9 +43,8 @@ public class MainCategoryFragment extends Fragment {
     }
 
     private void setUpList() {
-        ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList();
+        ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList(mContext);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
-       // GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(linearLayoutManager);
         MainCategoryItemAdapter mainCategoryItemAdapter = new MainCategoryItemAdapter(mContext, mainCategoryItemList);

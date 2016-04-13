@@ -36,7 +36,7 @@ public class MainCategoryRecyclerViewHolder extends RecyclerView.ViewHolder impl
     public void onClick(View view) {
 
         Intent intent = new Intent(mContext, SubCategoryActivity.class);
-        intent.putExtra("Category", ListUtils.getMainCategoryItemList().get(getAdapterPosition()));
+        intent.putExtra("Category", ListUtils.getMainCategoryItemList(mContext).get(getAdapterPosition()));
         intent.putExtra("position", getAdapterPosition());
         mContext.startActivity(intent);
     }

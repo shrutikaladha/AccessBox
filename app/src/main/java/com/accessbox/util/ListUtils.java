@@ -1,13 +1,10 @@
 package com.accessbox.util;
 
 import android.content.Context;
-import android.os.Environment;
 
-import com.accessbox.R;
 import com.accessbox.category.MainCategoryItem;
 import com.accessbox.category.SubCategoryItem;
 
-import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -15,53 +12,52 @@ import java.util.ArrayList;
  */
 public class ListUtils {
 
-    static ArrayList<MainCategoryItem> mainCategoryItemsList = new ArrayList<MainCategoryItem>();
-
     static SharedPrefs sharedPrefs = new SharedPrefs();
 
-
-    public static ArrayList<MainCategoryItem> getMainCategoryItemList() {
+    public static ArrayList<MainCategoryItem> getMainCategoryItemList(Context context) {
+        ArrayList<MainCategoryItem> mainCategoryItemsList = sharedPrefs.getMainCategoryList(context);
+        if(mainCategoryItemsList.size() == 0)
+            setProfileCategory(context,"male");
         return mainCategoryItemsList;
     }
 
-    public static void addCategory(MainCategoryItem mainCategoryItem) {
-        mainCategoryItemsList.add(mainCategoryItem);
+    public static void setMainCategoryItemList(Context context, ArrayList<MainCategoryItem> itemsList) {
+       sharedPrefs.setMainCategoryList(context,itemsList);
     }
 
-    public static void setProfileCategory(String gender) {
+    public static void addCategory(Context context, MainCategoryItem mainCategoryItem) {
+        ArrayList<MainCategoryItem> itemList = sharedPrefs.getMainCategoryList(context);
+        itemList.add(mainCategoryItem);
+        setMainCategoryItemList(context, itemList);
+    }
+
+    public static void setProfileCategory(Context context, String gender) {
+        ArrayList<MainCategoryItem> mainCategoryItemList = new ArrayList<MainCategoryItem>();
         switch (gender) {
             case "female":
-                mainCategoryItemsList.add(new MainCategoryItem("Watches", "watch", R.drawable.watches));
-                mainCategoryItemsList.add(new MainCategoryItem("Earrings", "Earring", R.drawable.earrings));
+                mainCategoryItemList.add(new MainCategoryItem("Watches", "watch"));
+                mainCategoryItemList.add(new MainCategoryItem("Earrings", "Earring"));
                 break;
 
             case "male":
-                mainCategoryItemsList.add(new MainCategoryItem("Wallets", "wallet", R.drawable.wallet));
-                mainCategoryItemsList.add(new MainCategoryItem("Belts", "belt", R.drawable.belt));
-                mainCategoryItemsList.add(new MainCategoryItem("Tie", "tie", R.drawable.tie));
-                mainCategoryItemsList.add(new MainCategoryItem("Watches", "watch", R.drawable.watches));
+                mainCategoryItemList.add(new MainCategoryItem("Wallets", "wallet"));
+                mainCategoryItemList.add(new MainCategoryItem("Belts", "belt"));
+                mainCategoryItemList.add(new MainCategoryItem("Tie", "tie"));
+                mainCategoryItemList.add(new MainCategoryItem("Watches", "watch"));
                 break;
 
             default:
-                mainCategoryItemsList.clear();
+                mainCategoryItemList.clear();
         }
+        sharedPrefs.setMainCategoryList(context,mainCategoryItemList);
     }
 
     public static void setSubCategoryItemList(Context context, String category, ArrayList<SubCategoryItem> imgPaths) {
-       // mSubItemsPathArrayList = imgPaths;
-        sharedPrefs.setCategoryList(context,imgPaths,category);
+        sharedPrefs.setSubCategoryList(context, imgPaths, category);
     }
 
     public static ArrayList<SubCategoryItem> getSubCategoryItemList(Context context, String category) {
-        ArrayList<SubCategoryItem> subCategoryItemsList = sharedPrefs.getCategoryList(context, category);
-     /*   ArrayList<SubCategoryItem> subCategoryItemsList = new ArrayList<SubCategoryItem>();
-        ArrayList<String> pathArray = mSubItemsPathArrayList;
-        for(int i=0;i<pathArray.size();i++) {
-            SubCategoryItem subCategoryItem = new SubCategoryItem();
-            subCategoryItem.setImgPath(pathArray.get(i));
-            subCategoryItem.setCatId(category);
-            subCategoryItemsList.add(subCategoryItem);
-        }*/
+        ArrayList<SubCategoryItem> subCategoryItemsList = sharedPrefs.getSubCategoryList(context, category);
         return subCategoryItemsList;
     }
 

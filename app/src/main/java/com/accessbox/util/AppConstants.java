@@ -10,6 +10,6 @@ public class AppConstants {
     public static final String itemList = "itemList";
 
     public static final String PREFS_NAME = "ACCESSBOX";
-    public static final String PREFS_FAVORITE_LIST = "Favorite";
-    public static final String PREFS_SHORTLIST_LIST = "Shortlist";
+    public static final String FAVORITE_LIST = "Favorite";
+    public static final String SHORTLIST_LIST = "Shortlist";
 }
