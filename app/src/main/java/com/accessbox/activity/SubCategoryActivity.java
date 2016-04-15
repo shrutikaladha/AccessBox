@@ -2,16 +2,11 @@ package com.accessbox.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.media.MediaScannerConnection;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -21,7 +16,6 @@ import com.accessbox.category.MainCategoryItem;
 import com.accessbox.category.SubCategoryItem;
 import com.accessbox.util.ListUtils;
 
-import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -90,7 +84,6 @@ public class SubCategoryActivity extends BaseActivity {
                 break;
         }
 
-        //collapsingToolbarLayout.setBackground(getResources().getDrawable(mainCategoryItem.getCategoryImg()));
         collapsingToolbarLayout.setTitle(mMainCategoryItem.getCategoryName());
     }
 

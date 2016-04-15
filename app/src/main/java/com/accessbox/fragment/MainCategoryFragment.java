@@ -31,8 +31,8 @@ public class MainCategoryFragment extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
-        mContext = activity;
         super.onAttach(activity);
+        mContext = activity;
     }
 
     @Nullable
@@ -43,6 +43,7 @@ public class MainCategoryFragment extends Fragment {
         setUpAdapter();
         return view;
     }
+
 
     private void setUpAdapter() {
         ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList(mContext);
@@ -56,6 +57,6 @@ public class MainCategoryFragment extends Fragment {
 
 
     public void onMainCategoryItemAdded() {
-        setUpAdapter();
+
     }
 }

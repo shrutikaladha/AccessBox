@@ -19,7 +19,6 @@ import com.accessbox.category.MainCategoryItem;
 import com.accessbox.fragment.MainCategoryFragment;
 import com.accessbox.util.ListUtils;
 
-import javax.security.auth.callback.Callback;
 
 /**
  * Created by shrutika on 13/3/16.

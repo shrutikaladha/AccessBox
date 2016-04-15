@@ -57,7 +57,7 @@ public class SharedPrefs {
         editor.commit();
     }
 
-    public ArrayList getMainCategoryList(Context context) {
+    public ArrayList<MainCategoryItem> getMainCategoryList(Context context) {
 
         SharedPreferences settings;
         List itemList;

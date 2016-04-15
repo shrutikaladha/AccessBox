@@ -26,7 +26,6 @@ import java.util.ArrayList;
 
 public class HomePageActivity extends BaseActivity {
 
-    String gender = "female";
     ViewPager viewPager;
     ViewPagerAdapter viewPagerAdapter;
     Toolbar toolbar;
