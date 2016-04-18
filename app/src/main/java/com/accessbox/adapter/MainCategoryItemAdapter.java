@@ -58,7 +58,6 @@ public class MainCategoryItemAdapter extends RecyclerView.Adapter<MainCategoryRe
         }
         // holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_1));
         holder.tvCategoryTitle.setText(itemList.get(position).getCategoryName());
-//        holder.ivCategory.setImageResource(itemList.get(position).getCategoryImg());
     }
 
     @Override

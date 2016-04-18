@@ -6,13 +6,20 @@
     <color name="male_profile_color">#303F9F</color>
     <color name="female_profile_color">#EB7757</color>
     <color name="theme_color">#FFA500</color>
-    <color name="main_category_text_color">#f5f5f5</color>
+    <color name="title_text_color_light">#f5f5f5</color>
+    <color name="title_text_color_dark">@color/theme_color</color>
     <color name="sub_category_text_color">#EB7757</color>
+    <color name="main_category_text_color">#f5f5f5</color>
     <color name="vibrant_color_1">#CE98AB</color>
     <color name="vibrant_color_2">#5CB269</color>
     <color name="vibrant_color_3">#FF9784</color>
     <color name="vibrant_color_4">#6CB99E</color>
     <color name="vibrant_color_5">#FFC966</color>
+    <color name="red">#f44336</color>
+
 
     <color name="main_category_view_title_text_color">#000000</color>
+
+    <color name="font_text_color_dark">#000000</color>
+    <color name="font_text_color_light">#f5f5f5</color>
 </resources>

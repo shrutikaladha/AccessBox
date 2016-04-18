@@ -1,56 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llAddCategory"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minWidth="300dp"
-    android:minHeight="250dp"
-    android:layout_margin="9dp"
-    android:gravity="center"
-    android:orientation="vertical">
+    style="@style/DialogFragmentStyle">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="New Category"
-        android:textSize="20dp"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/theme_color"/>
+        android:id="@+id/tv_header"
+        style="@style/HeadingWithBackgroundStyle"
+        android:text="New Category" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/fNameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="7dp">
+        style="@style/EditTextInputStyle"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="4dp">
 
-    <EditText
-        android:id="@+id/etCategoryName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:imeOptions="actionDone"
-        android:hint="Category Name"
-        android:textSize="14dp"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/etCategoryName"
+            style="@style/EditTextViewStyle"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            android:hint="Category Name" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/fShortNote"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="10dp">
+        style="@style/EditTextInputStyle"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="7dp">
 
-    <EditText
-        android:id="@+id/etShortNote"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:imeOptions="actionDone"
-        android:textSize="14dp"
-        android:hint="Category Short Description"
-        android:inputType="text" />
+        <EditText
+            android:id="@+id/etShortNote"
+            style="@style/EditTextViewStyle"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            android:hint="Category Short Description" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -59,6 +42,6 @@
         style="@style/ButtonStyle"
         android:layout_width="170dp"
         android:text="Create Category"
-        android:layout_margin="7dp"/>
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>

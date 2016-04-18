@@ -11,17 +11,50 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-       <style name="HeadingStyle">
+    <style name="DialogFragmentStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">220dp</item>
+        <item name="android:minWidth">300dp</item>
+        <item name="android:orientation">vertical</item>
+
+    </style>
+
+    <style name="HeadingWithBackgroundStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:textSize">@dimen/font_title_text_size</item>
+        <item name="android:background">@color/theme_color</item>
+        <item name="android:textColor">@color/title_text_color_light</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="HeaderTextViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:background">@color/main_category_text_color</item>
+    </style>
+
+    <style name="EditTextViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textSize">@dimen/font_subhead_1_text_size</item>
+    </style>
+
+    <style name="EditTextInputStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">@dimen/font_title_text_size</item>
-        <item name="android:textColor">@color/main_category_text_color</item>
+        <item name="android:layout_centerHorizontal">true</item>
     </style>
 
     <style name="ButtonStyle">
@@ -33,14 +66,14 @@
         <item name="android:textColor">@color/main_category_text_color</item>
     </style>
 
-
     <style name="PagerTitleStrip">
         <item name="android:textAppearance">@style/PagerTitleStripTextAppearance</item>
     </style>
+
     <style name="PagerTitleStripTextAppearance">
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/font_content_text_size</item>
+        <item name="android:textSize">@dimen/font_subhead_1_text_size</item>
     </style>
 
 </resources>

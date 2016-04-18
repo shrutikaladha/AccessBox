@@ -31,6 +31,12 @@ public class ListUtils {
         setMainCategoryItemList(context, itemList);
     }
 
+    public static void deleteCategory(Context context, MainCategoryItem mainCategoryItem) {
+        ArrayList<MainCategoryItem> itemList = sharedPrefs.getMainCategoryList(context);
+        itemList.remove(mainCategoryItem);
+        setMainCategoryItemList(context, itemList);
+    }
+
     public static void setProfileCategory(Context context, String gender) {
         ArrayList<MainCategoryItem> mainCategoryItemList = new ArrayList<MainCategoryItem>();
         switch (gender) {

@@ -23,7 +23,7 @@ import com.accessbox.util.ListUtils;
 /**
  * Created by shrutika on 13/3/16.
  */
-public class CategoryDialogFragment extends DialogFragment {
+public class AddCategoryDialogFragment extends DialogFragment {
 
     private EditText etCategoryName;
     private EditText etShortNote;
@@ -37,7 +37,7 @@ public class CategoryDialogFragment extends DialogFragment {
         mContext = activity;
     }
 
-    public CategoryDialogFragment() {
+    public AddCategoryDialogFragment() {
     }
 
     @Override
@@ -64,7 +64,7 @@ public class CategoryDialogFragment extends DialogFragment {
                     MainCategoryItem mainCategoryItem = new MainCategoryItem(name, desc);
                     ListUtils.addCategory(mContext, mainCategoryItem);
                     MainCategoryFragment mainCategoryFragment = new MainCategoryFragment();
-                    mainCategoryFragment.onMainCategoryItemAdded();
+                    mainCategoryFragment.onMainCategoryItemAdded(mainCategoryItem);
                     dismiss();
                 }
 

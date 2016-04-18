@@ -5,24 +5,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.accessbox.R;
-import com.accessbox.adapter.MainCategoryItemAdapter;
 import com.accessbox.adapter.ViewPagerAdapter;
-import com.accessbox.category.MainCategoryItem;
-import com.accessbox.dialog.CategoryDialogFragment;
-import com.accessbox.util.ListUtils;
-
-import java.util.ArrayList;
+import com.accessbox.dialog.AddCategoryDialogFragment;
 
 public class HomePageActivity extends BaseActivity {
 
@@ -85,7 +76,7 @@ public class HomePageActivity extends BaseActivity {
     private void setUpToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle(R.string.app_name);
+        toolbar.setTitle(R.string.app_title);
     }
 
 
@@ -110,7 +101,7 @@ public class HomePageActivity extends BaseActivity {
 
     private void showAddCategoryDialog() {
         FragmentManager fragmentManager = getFragmentManager();
-        CategoryDialogFragment categoryDialogFragment = new CategoryDialogFragment();
+        AddCategoryDialogFragment categoryDialogFragment = new AddCategoryDialogFragment();
         categoryDialogFragment.show(fragmentManager, "Add_Category");
     }
 

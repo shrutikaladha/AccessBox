@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.accessbox.R;
 import com.accessbox.category.SubCategoryItem;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
     private Activity activity;
     private ArrayList<SubCategoryItem> subCategoryItemList;
     private LayoutInflater inflater;
+    private ImageLoader imageLoader = ImageLoader.getInstance();
 
     // constructor
     public GalleryViewPagerAdapter(Activity activity, ArrayList<SubCategoryItem> subCategoryItemList) {
@@ -50,11 +52,12 @@ public class GalleryViewPagerAdapter extends PagerAdapter {
                 false);
 
         imgDisplay = (ImageView) viewLayout.findViewById(R.id.imgDisplay);
+        imageLoader.displayImage("file://" + subCategoryItemList.get(position).getImgPath(),imgDisplay);
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
+        /*BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
         Bitmap bitmap = BitmapFactory.decodeFile(subCategoryItemList.get(position).getImgPath(), options);
-        imgDisplay.setImageBitmap(bitmap);
+        imgDisplay.setImageBitmap(bitmap);*/
 
         ((ViewPager) container).addView(viewLayout);
 
