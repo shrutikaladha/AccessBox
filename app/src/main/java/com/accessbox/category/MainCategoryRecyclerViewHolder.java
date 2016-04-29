@@ -1,14 +1,17 @@
 package com.accessbox.category;
 
+import android.animation.AnimatorInflater;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.LinearGradient;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewAnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,6 +31,7 @@ public class MainCategoryRecyclerViewHolder extends RecyclerView.ViewHolder impl
     public TextView tvCategoryTitle;
     private TextView tvCategoryDesc;
     private ImageView ivCategory;
+    public CardView cvMainView;
     public LinearLayout llMainView;
     private Context mContext;
     private ImageView ivDelete;
@@ -35,6 +39,7 @@ public class MainCategoryRecyclerViewHolder extends RecyclerView.ViewHolder impl
     public MainCategoryRecyclerViewHolder(View itemView, Context context) {
         super(itemView);
         llMainView = (LinearLayout) itemView.findViewById(R.id.ll_main_view);
+        cvMainView = (CardView) itemView.findViewById(R.id.cv_main_view);
         tvCategoryTitle = (TextView) itemView.findViewById(R.id.tv_category_title);
         tvCategoryDesc = (TextView) itemView.findViewById(R.id.tv_category_desc);
         ivCategory = (ImageView) itemView.findViewById(R.id.iv_category);
@@ -47,16 +52,17 @@ public class MainCategoryRecyclerViewHolder extends RecyclerView.ViewHolder impl
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.iv_delete:
-                showDeleteCategoryDialog();
-                break;
 
-
-            case R.id.card_view:
+            case R.id.cv_main_view:
                 Intent intent = new Intent(mContext, SubCategoryActivity.class);
                 intent.putExtra("Category", ListUtils.getMainCategoryItemList(mContext).get(getAdapterPosition()));
                 intent.putExtra("position", getAdapterPosition());
                 mContext.startActivity(intent);
+                break;
+
+
+            case R.id.iv_delete:
+                showDeleteCategoryDialog();
                 break;
         }
 
@@ -69,7 +75,7 @@ public class MainCategoryRecyclerViewHolder extends RecyclerView.ViewHolder impl
         dialogBuilder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 MainCategoryFragment mainCategoryFragment = new MainCategoryFragment();
-                mainCategoryFragment.onMainCategoryItemDeleted(getAdapterPosition());
+                mainCategoryFragment.onMainCategoryItemDeleted(mContext, getAdapterPosition());
             }
         });
         dialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

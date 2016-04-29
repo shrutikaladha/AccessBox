@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:card_view="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -14,6 +14,12 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+    <style name="AccessBoxTheme">
+            <item name="windowActionBar">false</item>
+            <item name="windowNoTitle">true</item>
+            <item name="android:windowIsTranslucent">true</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -24,12 +30,13 @@
         <item name="android:minHeight">220dp</item>
         <item name="android:minWidth">300dp</item>
         <item name="android:orientation">vertical</item>
+        <item name="android:padding">10dp</item>
 
     </style>
 
     <style name="HeadingWithBackgroundStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_height">50dp</item>
         <item name="android:textSize">@dimen/font_title_text_size</item>
         <item name="android:background">@color/theme_color</item>
         <item name="android:textColor">@color/title_text_color_light</item>

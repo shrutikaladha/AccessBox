@@ -64,7 +64,7 @@ public class AddCategoryDialogFragment extends DialogFragment {
                     MainCategoryItem mainCategoryItem = new MainCategoryItem(name, desc);
                     ListUtils.addCategory(mContext, mainCategoryItem);
                     MainCategoryFragment mainCategoryFragment = new MainCategoryFragment();
-                    mainCategoryFragment.onMainCategoryItemAdded(mainCategoryItem);
+                    mainCategoryFragment.onMainCategoryItemAdded(mContext, mainCategoryItem);
                     dismiss();
                 }
 

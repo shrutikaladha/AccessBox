@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -50,6 +51,10 @@ public class SubCategoryActivity extends BaseActivity {
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mSubCategoryItemAdapter = new SubCategoryItemAdapter(this, mSubCategoryItemList);
         mRecyclerView.setAdapter(mSubCategoryItemAdapter);
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        itemAnimator.setRemoveDuration(1000);
+        mRecyclerView.setItemAnimator(itemAnimator);
     }
 
     private void setupFab() {

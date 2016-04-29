@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
  */
 public class MainCategoryFragment extends Fragment {
 
-    RecyclerView recyclerView;
+    RecyclerView mRecyclerView;
     Context mContext;
     ArrayList<MainCategoryItem> mainCategoryItemList;
 
@@ -38,7 +39,7 @@ public class MainCategoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_category_layout, null);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList(mContext);
         setUpAdapter(mainCategoryItemList);
         return view;
@@ -46,24 +47,29 @@ public class MainCategoryFragment extends Fragment {
 
 
     private void setUpAdapter(ArrayList<MainCategoryItem> mainCategoryItemList) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(mContext);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
         MainCategoryItemAdapter mainCategoryItemAdapter = new MainCategoryItemAdapter(mContext, mainCategoryItemList);
-        recyclerView.setAdapter(mainCategoryItemAdapter);
+        mRecyclerView.setAdapter(mainCategoryItemAdapter);
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        itemAnimator.setRemoveDuration(1000);
+        mRecyclerView.setItemAnimator(itemAnimator);
     }
 
 
 
-    public void onMainCategoryItemAdded(MainCategoryItem mainCategoryItem) {
-        ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList(getActivity());
+    public void onMainCategoryItemAdded(Context mContext, MainCategoryItem mainCategoryItem) {
+        ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList(mContext);
         mainCategoryItemList.add(mainCategoryItem);
-        setUpAdapter(mainCategoryItemList);
+       // setUpAdapter(mainCategoryItemList);
     }
 
-    public void onMainCategoryItemDeleted(int adapterPosition) {
-        ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList(getActivity());
+    public void onMainCategoryItemDeleted(Context context, int adapterPosition) {
+        mContext = context;
+        ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList(mContext);
         mainCategoryItemList.remove(adapterPosition);
-        setUpAdapter(mainCategoryItemList);
+        //setUpAdapter(mainCategoryItemList);
     }
 }

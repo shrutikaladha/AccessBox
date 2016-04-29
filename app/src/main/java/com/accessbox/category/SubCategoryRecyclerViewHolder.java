@@ -3,6 +3,7 @@ package com.accessbox.category;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
@@ -21,17 +22,19 @@ import java.util.ArrayList;
  * Created by shrutika on 24/3/16.
  */
 public class SubCategoryRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-    public ImageView mIvCategory;
+    public ImageView ivCategory;
     private Context mContext;
-    private ImageView mIvMoreOptions;
+    private ImageView ivMoreOptions;
+    public CardView cvMainView;
     private ArrayList<SubCategoryItem> mSubCategoryItemsList;
 
     public SubCategoryRecyclerViewHolder(View itemView, Context context, ArrayList<SubCategoryItem> subCategoryItemsList) {
         super(itemView);
         itemView.setOnClickListener(this);
-        mIvCategory = (ImageView) itemView.findViewById(R.id.iv_Category);
-        mIvMoreOptions = (ImageView) itemView.findViewById(R.id.iv_more_options);
-        mIvMoreOptions.setOnClickListener(this);
+        cvMainView = (CardView) itemView.findViewById(R.id.cv_main_view);
+        ivCategory = (ImageView) itemView.findViewById(R.id.iv_Category);
+        ivMoreOptions = (ImageView) itemView.findViewById(R.id.iv_more_options);
+        ivMoreOptions.setOnClickListener(this);
         mContext = context;
         mSubCategoryItemsList = subCategoryItemsList;
     }
@@ -41,7 +44,7 @@ public class SubCategoryRecyclerViewHolder extends RecyclerView.ViewHolder imple
         switch (view.getId()) {
             case R.id.iv_more_options:
                 //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(mContext, mIvMoreOptions);
+                PopupMenu popup = new PopupMenu(mContext, ivMoreOptions);
                 //Inflating the Popup using xml file
                 popup.getMenuInflater().inflate(R.menu.menu_sub_category_item, popup.getMenu());
 
