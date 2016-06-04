@@ -14,9 +14,8 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="AccessBoxTheme">
-            <item name="windowActionBar">false</item>
-            <item name="windowNoTitle">true</item>
+    <style name="AccessBoxTheme" parent="AppTheme.NoActionBar">
+
             <item name="android:windowIsTranslucent">true</item>
     </style>
 

@@ -63,13 +63,11 @@ public class MainCategoryFragment extends Fragment {
     public void onMainCategoryItemAdded(Context mContext, MainCategoryItem mainCategoryItem) {
         ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList(mContext);
         mainCategoryItemList.add(mainCategoryItem);
-       // setUpAdapter(mainCategoryItemList);
     }
 
     public void onMainCategoryItemDeleted(Context context, int adapterPosition) {
         mContext = context;
         ArrayList<MainCategoryItem> mainCategoryItemList = ListUtils.getMainCategoryItemList(mContext);
         mainCategoryItemList.remove(adapterPosition);
-        //setUpAdapter(mainCategoryItemList);
     }
 }

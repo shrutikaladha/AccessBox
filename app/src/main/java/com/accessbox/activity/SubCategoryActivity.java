@@ -36,7 +36,7 @@ public class SubCategoryActivity extends BaseActivity {
         setContentView(R.layout.activity_sub_category_layout);
         mMainCategoryItem = (MainCategoryItem) getIntent().getSerializableExtra("Category");
         position = getIntent().getIntExtra("position", 0);
-        setCoverPhoto();
+      //  setCoverPhoto();
         setupFab();
         setUpAdapter();
 

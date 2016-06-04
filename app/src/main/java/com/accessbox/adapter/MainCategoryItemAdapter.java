@@ -37,30 +37,6 @@ public class MainCategoryItemAdapter extends RecyclerView.Adapter<MainCategoryRe
     @Override
     public void onBindViewHolder(MainCategoryRecyclerViewHolder holder, int position) {
        // animate(holder.cvMainView);
-        switch (position % 5) {
-            case 0:
-                holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_1));
-                itemList.get(position).setCategoryColor("@string/vibrant_color_1");
-                break;
-            case 1:
-                holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_2));
-                itemList.get(position).setCategoryColor("@string/vibrant_color_2");
-                break;
-            case 2:
-                holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_3));
-                itemList.get(position).setCategoryColor("@string/vibrant_color_3");
-                break;
-            case 3:
-                holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_4));
-                itemList.get(position).setCategoryColor("@string/vibrant_color_4");
-                break;
-            case 4:
-                holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_5));
-                itemList.get(position).setCategoryColor("@string/vibrant_color_5");
-                break;
-
-        }
-        // holder.llMainView.setBackgroundColor(mContext.getResources().getColor(R.color.vibrant_color_1));
         holder.tvCategoryTitle.setText(itemList.get(position).getCategoryName());
     }
 
